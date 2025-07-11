@@ -2,19 +2,22 @@ import { Controller, Post, Body, Request, UseGuards, Res, HttpStatus } from '@ne
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { Response } from 'express';
+import { ApiBody, ApiBearerAuth } from '@nestjs/swagger';
+import { AuthDto } from './auth.dto';
 
 @Controller('auth')
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
-  async register(@Body() body: { username: string; password: string; admin?: boolean }, @Res() res: Response) {
+  @ApiBody({ type: AuthDto })
+  async register(@Body() body: AuthDto, @Res() res: Response) {
     try {
       const user = await this.authService.register(body);
       return res.status(HttpStatus.CREATED).json({
         user_id: user.id,
         username: user.username,
-        admin: user.admin,
+        admin: false,
       });
     } catch (err: any) {
       if (err.code === '23505') {
@@ -26,7 +29,8 @@ export class AuthController {
   }
 
   @Post('login')
-  async login(@Body() body: { username: string; password: string }, @Res() res: Response) {
+  @ApiBody({ type: AuthDto })
+  async login(@Body() body: AuthDto, @Res() res: Response) {
     if (!body || !body.username || !body.password) {
       return res.status(HttpStatus.BAD_REQUEST).send('요청값이 올바르지 않습니다');
     }
@@ -47,8 +51,9 @@ export class AuthController {
   }
 
   @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
   @Post('profile')
   async getProfile(@Request() req) {
     return req.user;
-  }
+  }  
 } 
