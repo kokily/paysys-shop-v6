@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { UserModule } from './users/user.module';
 import { AuthModule } from './auth/auth.module';
+import { ItemModule } from './items/items.module';
 import appConfig from './config/app.config';
 
 @Module({
@@ -31,6 +32,7 @@ import appConfig from './config/app.config';
     }),
     UserModule,
     AuthModule,
+    ItemModule,
   ],
   controllers: [AppController],
   providers: [AppService],
