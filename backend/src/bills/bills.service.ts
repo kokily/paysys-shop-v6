@@ -60,7 +60,7 @@ export class BillService {
     });
 
     if (!cart) {
-      throw new NotFoundException('장바구니가 존재하지 않습니다.');
+      throw new NotFoundException('장바구니가 비어있습니다.');
     }
 
     // 총 금액 계산

@@ -3,13 +3,16 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UserModule } from './users/user.module';
 import { AuthModule } from './auth/auth.module';
+import { UserModule } from './users/user.module';
 import { ItemModule } from './items/items.module';
 import { CartModule } from './carts/carts.module';
 import { BillModule } from './bills/bills.module';
 import { ReserveModule } from './reserve/reserve.module';
 import { WeddingsModule } from './weddings/weddings.module';
+import { ExpenseModule } from './expense/expense.module';
+import { SignModule } from './sign/sign.module';
+import { UploadModule } from './upload/upload.module';
 import appConfig from './config/app.config';
 
 @Module({
@@ -34,13 +37,16 @@ import appConfig from './config/app.config';
       }),
       inject: [ConfigService],
     }),
-    UserModule,
     AuthModule,
+    UserModule,
     ItemModule,
     CartModule,
     BillModule,
     ReserveModule,
     WeddingsModule,
+    ExpenseModule,
+    SignModule,
+    UploadModule,
   ],
   controllers: [AppController],
   providers: [AppService],

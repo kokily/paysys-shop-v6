@@ -9,25 +9,6 @@ import { AuthDto } from './auth.dto';
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
-  @Post('register')
-  @ApiBody({ type: AuthDto })
-  async register(@Body() body: AuthDto, @Res() res: Response) {
-    try {
-      const user = await this.authService.register(body);
-      return res.status(HttpStatus.CREATED).json({
-        user_id: user.id,
-        username: user.username,
-        admin: false,
-      });
-    } catch (err: any) {
-      if (err.code === '23505') {
-        // unique violation
-        return res.status(HttpStatus.CONFLICT).send('이미 이용중인 아이디입니다');
-      }
-      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send('서버 오류');
-    }
-  }
-
   @Post('login')
   @ApiBody({ type: AuthDto })
   async login(@Body() body: AuthDto, @Res() res: Response) {
@@ -48,6 +29,25 @@ export class AuthController {
       admin: user.admin,
       access_token: (await this.authService.login(user)).access_token,
     });
+  }
+
+  @Post('register')
+  @ApiBody({ type: AuthDto })
+  async register(@Body() body: AuthDto, @Res() res: Response) {
+    try {
+      const user = await this.authService.register(body);
+      return res.status(HttpStatus.CREATED).json({
+        user_id: user.id,
+        username: user.username,
+        admin: false,
+      });
+    } catch (err: any) {
+      if (err.code === '23505') {
+        // unique violation
+        return res.status(HttpStatus.CONFLICT).send('이미 이용중인 아이디입니다');
+      }
+      return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send('서버 오류');
+    }
   }
 
   @UseGuards(JwtAuthGuard)

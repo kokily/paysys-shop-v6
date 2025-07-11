@@ -76,8 +76,12 @@ export class BillController {
       const bill = await this.billService.createBill(userId, username, createBillDto);
       return res.status(HttpStatus.CREATED).json(bill);
     } catch (err: any) {
-      if (err.message === '장바구니가 존재하지 않습니다.') {
-        return res.status(HttpStatus.NOT_FOUND).send(err.message);
+      if (
+        err.message === '장바구니가 존재하지 않습니다.' ||
+        err.message === '빌지가 존재하지 않습니다.' ||
+        err.message === '장바구니가 비어있습니다.'
+      ) {
+        return res.status(HttpStatus.NOT_FOUND).send('장바구니가 비어있습니다.');
       }
       return res.status(HttpStatus.INTERNAL_SERVER_ERROR).send('서버 오류');
     }
