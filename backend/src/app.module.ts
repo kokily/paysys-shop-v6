@@ -8,6 +8,8 @@ import { AuthModule } from './auth/auth.module';
 import { ItemModule } from './items/items.module';
 import { CartModule } from './carts/carts.module';
 import { BillModule } from './bills/bills.module';
+import { ReserveModule } from './reserve/reserve.module';
+import { WeddingsModule } from './weddings/weddings.module';
 import appConfig from './config/app.config';
 
 @Module({
@@ -37,6 +39,8 @@ import appConfig from './config/app.config';
     ItemModule,
     CartModule,
     BillModule,
+    ReserveModule,
+    WeddingsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
