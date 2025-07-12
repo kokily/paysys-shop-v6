@@ -1,4 +1,4 @@
-import { Controller, Post, Body, Request, UseGuards, Res, HttpStatus } from '@nestjs/common';
+import { Controller, Post, Body, Request, UseGuards, Res, HttpStatus, Get } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { JwtAuthGuard } from './jwt-auth.guard';
 import { Response } from 'express';
@@ -52,8 +52,16 @@ export class AuthController {
 
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
-  @Post('profile')
-  async getProfile(@Request() req) {
+  @Get('check')
+  async check(@Request() req) {
     return req.user;
-  }  
+  }
+
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @Post('logout')
+  async logout(@Request() req, @Res() res: Response) {
+    // 추후 블랙리스트/세션 관리 로직 추가 가능
+    return res.status(HttpStatus.OK).send('로그아웃 완료');
+  }
 } 
