@@ -5,6 +5,9 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './modules/auth/auth.module';
 import { ItemsModule } from './modules/items/items.module';
+import { CartModule } from './modules/carts/carts.module';
+import { BillsModule } from './modules/bills/bills.module';
+import { NotificationModule } from './modules/notifications/notification.module';
 
 @Module({
   imports: [
@@ -24,6 +27,9 @@ import { ItemsModule } from './modules/items/items.module';
     }),
     AuthModule,
     ItemsModule,
+    CartModule,
+    BillsModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
