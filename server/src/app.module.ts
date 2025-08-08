@@ -9,6 +9,7 @@ import { CartModule } from './modules/carts/carts.module';
 import { BillsModule } from './modules/bills/bills.module';
 import { NotificationModule } from './modules/notifications/notification.module';
 import { UsersModule } from './modules/users/users.module';
+import { UploadsModule } from './modules/uploads/uploads.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { UsersModule } from './modules/users/users.module';
     CartModule,
     BillsModule,
     UsersModule,
+    UploadsModule,
     NotificationModule,
   ],
   controllers: [AppController],
