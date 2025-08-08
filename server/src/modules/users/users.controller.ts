@@ -71,7 +71,7 @@ export class UsersController {
   @Delete('id')
   @UseGuards(JwtAuthGuard, AdminGuard)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: '사용자 삭제(관리자' })
+  @ApiOperation({ summary: '사용자 삭제(관리자)' })
   @ApiResponse({ status: 200, description: '사용자 삭제 성공' })
   @ApiResponse({ status: 404, description: '사용자를 찾을 수 없음' })
   @ApiResponse({ status: 403, description: '관리자 권한 필요' })
