@@ -10,6 +10,7 @@ import { BillsModule } from './modules/bills/bills.module';
 import { NotificationModule } from './modules/notifications/notification.module';
 import { UsersModule } from './modules/users/users.module';
 import { UploadsModule } from './modules/uploads/uploads.module';
+import { WeddingsModule } from './modules/weddings/weddings.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { UploadsModule } from './modules/uploads/uploads.module';
     BillsModule,
     UsersModule,
     UploadsModule,
+    WeddingsModule,
     NotificationModule,
   ],
   controllers: [AppController],
