@@ -8,6 +8,7 @@ import { ItemsModule } from './modules/items/items.module';
 import { CartModule } from './modules/carts/carts.module';
 import { BillsModule } from './modules/bills/bills.module';
 import { NotificationModule } from './modules/notifications/notification.module';
+import { UsersModule } from './modules/users/users.module';
 
 @Module({
   imports: [
@@ -29,6 +30,7 @@ import { NotificationModule } from './modules/notifications/notification.module'
     ItemsModule,
     CartModule,
     BillsModule,
+    UsersModule,
     NotificationModule,
   ],
   controllers: [AppController],
