@@ -11,7 +11,6 @@ import NavList from "./NavList";
 function Header() {
   const dispatch = useAppDispatch();
   const { user } = useAppSelector((state) => state.auth);
-  const { menuOpen } = useAppSelector((state) => state.header);
   const location = useLocation();
   const link = location.pathname.substring(1);
 
