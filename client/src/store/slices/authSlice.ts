@@ -31,7 +31,7 @@ export const loginAsync = createAsyncThunk(
   async (credentials: LoginCredentials, { rejectWithValue }) => {
     try {
       const data = await login(credentials);
-      localStorage.setItem('token', data.token);
+      localStorage.setItem('token', data.access_token);
       return data;
     } catch (error) {
       return rejectWithValue(error instanceof Error ? error.message : '로그인 실패');
@@ -63,7 +63,11 @@ export const checkAuthAsync = createAsyncThunk(
         throw new Error('토큰이 없습니다.');
       }
 
-      return await checkAuth();
+      const userData = await checkAuth();
+      return {
+        ...userData,
+        access_token: token,
+      };
     } catch (error) {
       localStorage.removeItem('token');
       return rejectWithValue(error instanceof Error ? error.message : '인증 실패');
@@ -101,8 +105,12 @@ const authSlice = createSlice({
       })
       .addCase(loginAsync.fulfilled, (state, action) => {
         state.loading = false;
-        state.user = action.payload.user;
-        state.token = action.payload.token;
+        state.user = {
+          user_id: action.payload.user_id,
+          username: action.payload.username,
+          admin: action.payload.admin,
+        };
+        state.token = action.payload.access_token;
         state.isAuthenticated = true;
         state.form = { username: '', password: '' };
       })
@@ -136,6 +144,7 @@ const authSlice = createSlice({
           username: action.payload.username,
           admin: action.payload.admin,
         };
+        state.token = action.payload.access_token;
         state.isAuthenticated = true;
       })
       .addCase(checkAuthAsync.rejected, (state) => {

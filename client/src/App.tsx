@@ -6,6 +6,12 @@ import { checkAuthAsync } from "./store/slices/authSlice";
 import ToastPortal from "./components/common/ToastPortal";
 import LoginPage from "./pages/LoginPage";
 import MemberPage from "./pages/MemberPage";
+import AssociatePage from "./pages/AssociatePage";
+import GeneralPage from "./pages/GeneralPage";
+import CartPage from "./pages/CartPage";
+import ListFrontsPage from "./pages/fronts/ListFrontsPage";
+import ProtectedRoute from "./components/common/ProtectedRoute";
+import ReadFrontPage from "./pages/fronts/ReadFrontPage";
 
 
 function App() {
@@ -31,11 +37,59 @@ function App() {
           <Routes>
             <Route
               path="/"
-              element={isAuthenticated ? <Navigate to="/member" /> : <LoginPage />}
+              element={isAuthenticated
+                ? <Navigate to="/member" />
+                : <LoginPage />
+              }
             />
             <Route
               path="/member"
-              element={isAuthenticated ? <MemberPage /> : <Navigate to="/" />}
+              element={
+                <ProtectedRoute>
+                  <MemberPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/associate"
+              element={
+                <ProtectedRoute>
+                  <AssociatePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/general"
+              element={
+                <ProtectedRoute>
+                  <GeneralPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute>
+                  <CartPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/fronts"
+              element={
+                <ProtectedRoute>
+                  <ListFrontsPage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/front/:id"
+              element={
+                <ProtectedRoute>
+                  <ReadFrontPage />
+                </ProtectedRoute>
+              }
             />
           </Routes>
           <ToastPortal />

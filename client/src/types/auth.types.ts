@@ -24,8 +24,10 @@ export interface User {
  * 로그인 응답 데이터
  */
 export interface LoginResponse {
-  user: User;
-  token: string;
+  user_id: string;
+  username: string;
+  admin: boolean;
+  access_token: string;
 }
 
 /**

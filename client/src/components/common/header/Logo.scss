@@ -1,0 +1,41 @@
+.logo-container {
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: bold;
+  text-decoration: none;
+  cursor: pointer;
+  
+  &:hover {
+    text-shadow: 0.5px 0.5px;
+  }
+  
+  // 각 페이지별 색상
+  &.member {
+    color: $member-color;
+  }
+  
+  &.associate {
+    color: $associate-color;
+  }
+  
+  &.general {
+    color: $general-color;
+  }
+  
+  &.cart {
+    color: $warning-color;
+  }
+  
+  &.fronts {
+    color: $success-color;
+  }
+  
+  &.password {
+    color: $warning-color;
+  }
+  
+  &.weddings {
+    color: $success-color;
+  }
+}

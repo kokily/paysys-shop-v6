@@ -1,6 +1,8 @@
+import PageTemplate from "@/components/common/PageTemplate";
+
 function MemberPage() {
   return (
-    <div>MemberPage</div>
+    <PageTemplate>MemberPage</PageTemplate>
   )
 }
 
