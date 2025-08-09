@@ -1,0 +1,42 @@
+// 메인 색상 (기존 프로젝트와 동일)
+$member-color: #1098ad;     // 회원
+$associate-color: #68a614;  // 준회원
+$general-color: #e47112;    // 일반
+$success-color: #7950f2;    // 성공
+$warning-color: #fab005;    // 경고
+$error-color: #fa5252;      // 취소/삭제
+
+// 중성 색상
+$background-color: #f8fafc;
+$surface-color: #ffffff;
+$text-primary: #1e293b;
+$text-secondary: #64748b;
+$border-color: #e2e8f0;
+
+// 브레이크포인트 (기존과 동일)
+$large: 1200px;
+$medium: 992px;
+$small: 768px;
+$xsmall: 376px;
+
+// 간격
+$spacing-xs: 0.25rem;
+$spacing-sm: 0.5rem;
+$spacing-md: 1rem;
+$spacing-lg: 1.5rem;
+$spacing-xl: 2rem;
+
+// 폰트 크기
+$font-size-xs: 0.75rem;
+$font-size-sm: 0.875rem;
+$font-size-base: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+
+// 그림자 (기존과 동일)
+$shadow-1: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+$shadow-2: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+$shadow-3: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+$shadow-4: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+$shadow-5: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
