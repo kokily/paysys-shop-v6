@@ -14,6 +14,7 @@ import ProtectedRoute from "./components/common/ProtectedRoute";
 import ReadFrontPage from "./pages/fronts/ReadFrontPage";
 import ListMenuPage from "./pages/menu/ListMenuPage";
 import ReadMenuPage from "./pages/menu/ReadMenuPage";
+import ModalPortal from "./components/common/Modal";
 
 
 function App() {
@@ -111,6 +112,7 @@ function App() {
             />
           </Routes>
           <ToastPortal />
+          <ModalPortal />
         </div>
       </Router>
     </HelmetProvider>

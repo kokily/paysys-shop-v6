@@ -3,6 +3,8 @@ import authReducer from './slices/authSlice';
 import headerReducer from './slices/headerSlice';
 import nativeReducer from './slices/nativeSlice';
 import menuReducer from './slices/menuSlice';
+import cartReducer from './slices/cartSlice';
+import modalReducer from './slices/modalSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +12,8 @@ export const store = configureStore({
     header: headerReducer,
     native: nativeReducer,
     menu: menuReducer,
+    cart: cartReducer,
+    modal: modalReducer,
   },
 });
 

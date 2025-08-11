@@ -7,6 +7,22 @@ import ReadMenuTable from './ReadMenuTable';
 function ReadMenu() {
   const { menu, count, price, loading, error, onBack, onChange, onAddCart, onKeyPress } = useReadMenu();
 
+  if (error) {
+    return (
+      <div className="menu-error">
+        <p>에러 발생: {error}</p>
+      </div>
+    );
+  };
+
+  if (loading) {
+    return (
+      <div className="menu-loading">
+        <p>로딩 중...</p>
+      </div>
+    );
+  };
+
   return (
     <>
       {menu && (

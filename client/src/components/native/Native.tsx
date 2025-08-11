@@ -20,7 +20,7 @@ const Native = memo(() => {
         <p>로딩 중...</p>
       </div>
     );
-  }  ;
+  };
 
   const renderNativeItems = (nativeType: 'member' | 'associate' | 'general') => {
     return menu.map(item => (

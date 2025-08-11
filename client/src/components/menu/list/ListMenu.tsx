@@ -4,7 +4,23 @@ import Button from '@/components/common/Button';
 import MenuItem from './MenuItem';
 
 function ListMenu() {
-  const { menu, onBack, onReadMenu } = useListMenu();
+  const { menu, loading, error, onBack, onReadMenu } = useListMenu();
+
+  if (error) {
+    return (
+      <div className="menu-error">
+        <p>에러 발생: {error}</p>
+      </div>
+    );
+  };
+
+  if (loading) {
+    return (
+      <div className="menu-loading">
+        <p>로딩 중...</p>
+      </div>
+    );
+  };
 
   return (
     <div className='menu-container'>
