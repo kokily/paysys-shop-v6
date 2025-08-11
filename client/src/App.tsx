@@ -12,6 +12,8 @@ import CartPage from "./pages/CartPage";
 import ListFrontsPage from "./pages/fronts/ListFrontsPage";
 import ProtectedRoute from "./components/common/ProtectedRoute";
 import ReadFrontPage from "./pages/fronts/ReadFrontPage";
+import ListMenuPage from "./pages/menu/ListMenuPage";
+import ReadMenuPage from "./pages/menu/ReadMenuPage";
 
 
 function App() {
@@ -63,6 +65,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <GeneralPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/menu"
+              element={
+                <ProtectedRoute>
+                  <ListMenuPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/menu/:id"
+              element={
+                <ProtectedRoute>
+                  <ReadMenuPage />
                 </ProtectedRoute>
               }
             />

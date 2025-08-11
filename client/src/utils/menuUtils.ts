@@ -13,3 +13,19 @@ export const getNativeLabel = (nativeType: NativeType): NativeLabel => {
 export const isValidNativeType = (type: string): type is NativeType => {
   return ['member', 'associate', 'general'].includes(type);
 }
+
+export function unitOfAccount(target: number, unit?: string) {
+  return `${target.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')}${unit ?? ''}`;
+}
+
+export function unitOfDate(target: Date) {
+  return new Date(target).toLocaleDateString();
+}
+
+export function unitOfTime(target: Date) {
+  return new Date(target).toLocaleTimeString();
+}
+
+export function unitOfShortDate(target: Date) {
+  return `'${new Date(target).toLocaleDateString().substring(2)}`;
+}
