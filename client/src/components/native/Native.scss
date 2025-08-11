@@ -1,0 +1,13 @@
+.native-container {
+  margin-top: 1rem;
+  margin-bottom: 6rem;
+
+  .native-contents {
+    margin: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+    grid-column-gap: 1rem;
+    grid-row-gap: 1rem;
+    margin-bottom: 1rem;
+  }
+}

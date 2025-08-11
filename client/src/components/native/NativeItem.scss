@@ -1,0 +1,36 @@
+.native-item {
+  &.member {
+    background-color: $member-color;
+  }
+
+  &.associate {
+    background-color: $associate-color;
+  }
+
+  &.general {
+    background-color: $general-color;
+  }
+
+  color: white;
+  font-size: 1.215rem;
+  font-weight: 700;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  width: 100%;
+  height: 55px;
+  cursor: pointer;
+  -webkit-filter: brightness(0.9);
+  filter: brightness(0.9);
+
+  &:hover {
+    -webkit-filter: brightness(1);
+    filter: brightness(1);
+  }
+
+  &:active {
+    transform: translateY(3px);
+  }
+}

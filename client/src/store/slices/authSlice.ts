@@ -1,3 +1,4 @@
+import type { PayloadAction} from '@reduxjs/toolkit';
 import type { LoginCredentials, User } from "../../types/auth.types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { checkAuth, login, logout } from "../../services/authService";
@@ -83,7 +84,7 @@ const authSlice = createSlice({
     clearError: (state) => {
       state.error = null;
     },
-    updateForm: (state, action) => {
+    updateForm: (state, action: PayloadAction<Partial<{ username: string; password: string }>>) => {
       state.form = {
         ...state.form,
         ...action.payload,
