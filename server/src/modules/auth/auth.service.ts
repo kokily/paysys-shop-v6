@@ -138,9 +138,20 @@ private isAdminUser(username: string): boolean {
    * 
    * @returns 현재 사용자 정보
    */
-  async check() {
-    return {
-      message: 'check - 구현 예정'
+  async check(userId: string) {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      select: ['id', 'username', 'admin'],
+    });
+
+    if (!user) {
+      throw new UnauthorizedException('사용자를 찾을 수 없습니다.');
     }
-  }
+
+    return {
+      user_id: user.id,
+      username: user.username,
+      admin: user.admin,
+    };
+  };
 }

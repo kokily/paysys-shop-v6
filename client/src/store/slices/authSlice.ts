@@ -1,4 +1,4 @@
-import type { CheckAuthResponse, LoginCredentials, User } from "../../types/auth.types";
+import type { LoginCredentials, User } from "../../types/auth.types";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { checkAuth, login, logout } from "../../services/authService";
 

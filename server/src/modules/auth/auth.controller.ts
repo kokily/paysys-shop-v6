@@ -46,7 +46,7 @@ export class AuthController {
   @Get('check')
   @UseGuards(JwtAuthGuard)
   @ApiOperation({ summary: '인증 상태 확인' })
-  async check() {
-    return this.authService.check();
+  async check(@Request() req: AuthenticatedRequest) {
+    return this.authService.check(req.user.user_id);
   }
 }

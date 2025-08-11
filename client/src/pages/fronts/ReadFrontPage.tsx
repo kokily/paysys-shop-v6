@@ -1,6 +1,12 @@
+import PageTemplate from "@/components/common/PageTemplate";
+
 function ReadFrontPage() {
   return (
-    <div>ReadFrontPage</div>
+    <>
+      <PageTemplate>
+        빌지 상세 페이지
+      </PageTemplate>
+    </>
   )
 }
 
