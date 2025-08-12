@@ -1,0 +1,69 @@
+.front-table-container {
+  width: 100%;
+  padding: 0;
+  border-radius: 0.8rem;
+  overflow: hidden;
+
+  tr:hover {
+    background: #91a7ff;
+    color: white;
+    strong {
+      color: #c92a2a;
+    }
+  }
+
+  th,
+  td {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+    strong {
+      color: #364fc7;
+    }
+  }
+
+  th {
+    background: #364fc7;
+    color: white;
+  }
+
+  @include small {
+    td { 
+      &.회원 {
+        color: white;
+        background-color: $member-color;
+      }
+
+      &.준회원 {
+        color: white;
+        background-color: $associate-color;
+      }
+
+      &.일반 {
+        color: white;
+        background-color: $general-color;
+      }
+    }
+  }
+
+  @media print {
+    th {
+      color: blue;
+    }
+    td {
+      color: black;
+
+      &.회원 {
+        color: $member-color;
+      }
+
+      &.준회원 {
+        color: $associate-color;
+      }
+
+      &.일반 {
+        color: $general-color;
+      }
+    }
+  }
+}

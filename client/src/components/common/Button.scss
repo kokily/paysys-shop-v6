@@ -74,4 +74,37 @@
       box-shadow: 0 2px 4px rgba(121, 80, 242, 0.3);
     }
   }
+
+  &--edit {
+    border-color: $warning-color;
+    color: $warning-color;
+
+    &:hover:not(:disabled) {
+      background-color: $warning-color;
+      color: white;
+      box-shadow: 0 2px 4px rgba(121, 80, 242, 0.3);
+    }
+  }
+
+  &--menu {
+    border-color: $menu-color;
+    color: $menu-color;
+
+    &:hover:not(:disabled) {
+      background-color: $menu-color;
+      color: white;
+      box-shadow: 0 2px 4px rgba(121, 80, 242, 0.3);
+    }
+  }
+
+  &--reserve {
+    border-color: $reserve-color;
+    color: $reserve-color;
+
+    &:hover:not(:disabled) {
+      background-color: $reserve-color;
+      color: white;
+      box-shadow: 0 2px 4px rgba(121, 80, 242, 0.3);
+    }
+  }
 }

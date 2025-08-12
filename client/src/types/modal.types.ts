@@ -5,4 +5,5 @@ export interface ModalState {
   confirmText: string;
   cancelText: string;
   actionType: string | null;
+  onConfirm?: () => void;
 }

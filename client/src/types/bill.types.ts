@@ -1,4 +1,4 @@
-import type { ItemType } from "./menu.types";
+import type { CartItemType } from "./cart.types";
 
 export interface BillType {
   id: string;
@@ -6,7 +6,7 @@ export interface BillType {
   hall: string;
   etc: string;
   total_amount: number;
-  items: ItemType[];
+  items: CartItemType[];
   reserve?: number;
   username: string;
   user_id: string;

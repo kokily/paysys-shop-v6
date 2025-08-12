@@ -5,6 +5,7 @@ import Button from './Button';
 import './Modal.scss';
 import { showToast } from '@/utils/toast';
 import { removeCartAsync } from '@/store/slices/cartSlice';
+import { removeBillAsync } from '@/store/slices/billSlice';
 
 function ModalPortal() {
   const dispatch = useAppDispatch();
@@ -15,6 +16,7 @@ function ModalPortal() {
     confirmText,
     cancelText,
     actionType,
+    onConfirm,
   } = useAppSelector((state) => state.modal);
 
   if (!isOpen) return null;
@@ -25,6 +27,11 @@ function ModalPortal() {
         case 'REMOVE_CART':
           await dispatch(removeCartAsync()).unwrap();
           showToast.success('카트 삭제');
+          break;
+        case 'REMOVE_BILL':
+          if (onConfirm) {
+            onConfirm();
+          }
           break;
         default:
           break;

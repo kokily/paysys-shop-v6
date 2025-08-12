@@ -21,3 +21,15 @@ export interface ItemType {
   unit: string;
   price: number;
 }
+
+export interface CartItemType {
+  id: string;
+  num: number;
+  name: string;
+  divide: string;
+  native: string;
+  unit: string;
+  price: number;
+  count: number;
+  amount: number;
+}

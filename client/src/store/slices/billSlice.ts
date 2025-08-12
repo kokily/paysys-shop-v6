@@ -1,9 +1,10 @@
 import type { BillType } from "@/types/bill.types";
-import { listBills } from "@/services/billService";
+import { listBills, readBill, removeBill, restoreBill } from "@/services/billService";
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
 interface BillState {
   bills: BillType[];
+  currentBill: BillType | null;
   loading: boolean;
   error: string | null;
   search: string;
@@ -16,6 +17,7 @@ interface BillState {
 
 const initialState: BillState = {
   bills: [],
+  currentBill: null,
   loading: false,
   error: null,
   search: '',
@@ -58,6 +60,39 @@ export const loadMoreBillsAsync = createAsyncThunk(
   }
 );
 
+export const readBillAsync = createAsyncThunk(
+  'bill/readBill',
+  async (id: string, { rejectWithValue }) => {
+    try {
+      return await readBill(id);
+    } catch (error) {
+      return rejectWithValue(error instanceof Error ? error.message : '전표 상세 정보 로딩 실패');
+    }
+  }
+);
+
+export const removeBillAsync = createAsyncThunk(
+  'bill/removeBill',
+  async (id: string, { rejectWithValue }) => {
+    try {
+      return await removeBill(id);
+    } catch (error) {
+      return rejectWithValue(error instanceof Error ? error.message : '전표 삭제 실패');
+    }
+  }
+);
+
+export const restoreBillAsync = createAsyncThunk(
+  'bill/restoreBill',
+  async (id: string, { rejectWithValue }) => {
+    try {
+      return await restoreBill(id);
+    } catch (error) {
+      return rejectWithValue(error instanceof Error ? error.message : '전표 복원 실패');
+    }
+  }
+);
+
 const billSlice = createSlice({
   name: 'bill',
   initialState,
@@ -84,6 +119,9 @@ const billSlice = createSlice({
     },
     clearScrollY: (state) => {
       state.scrollY = 0;
+    },
+    clearCurrentBill: (state) => {
+      state.currentBill = null;
     },
   },
   extraReducers: (builder) => {
@@ -114,6 +152,46 @@ const billSlice = createSlice({
         state.hasMore = action.payload.length === 30;
       })
       .addCase(loadMoreBillsAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
+
+    builder
+      .addCase(readBillAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(readBillAsync.fulfilled, (state, action: PayloadAction<BillType>) => {
+        state.loading = false;
+        state.currentBill = action.payload;
+      })
+      .addCase(readBillAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
+      
+    builder
+      .addCase(removeBillAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(removeBillAsync.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(removeBillAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
+
+    builder
+      .addCase(restoreBillAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(restoreBillAsync.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(restoreBillAsync.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
       });
