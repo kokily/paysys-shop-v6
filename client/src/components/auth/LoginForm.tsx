@@ -40,7 +40,7 @@ function LoginForm() {
       </div>
       <div className='login-form-container'>
         <form onSubmit={handleSubmit}>
-          <div className='form-group'>
+          <div className='login-form-group'>
             <input
               className='auth-input'
               type="text"
@@ -50,10 +50,10 @@ function LoginForm() {
               onChange={handleChange}
               required
             />
-            <span className='bar' />
-            <label htmlFor='username' className='input-label'>사용자 이름</label>
+            <span className='login-form-bar' />
+            <label htmlFor='username' className='login-form-input-label'>사용자 이름</label>
           </div>
-          <div className='form-group'>
+          <div className='login-form-group'>
             <input
               className='auth-input'
               type="password"
@@ -63,13 +63,13 @@ function LoginForm() {
               onChange={handleChange}
               required
             />
-            <span className='bar' />
-            <label htmlFor='password' className='input-label'>비밀번호</label>
+            <span className='login-form-bar' />
+            <label htmlFor='password' className='login-form-input-label'>비밀번호</label>
           </div>
 
           <button
             type="submit"
-            className='submit-button'
+            className='login-submit-button'
             disabled={loading}
           >
             <div className='button-layer'>어서오세요!</div>
