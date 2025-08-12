@@ -11,7 +11,7 @@ export interface BillType {
   username: string;
   user_id: string;
   cart_id: string;
-  created_at: string;
+  created_at: Date;
 }
 
 export interface AddBillRequest {

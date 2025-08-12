@@ -1,0 +1,16 @@
+.list-fronts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  margin-bottom: 1rem;
+
+  @include xsmall {
+    width: 100%;
+  }
+
+  .observer {
+    height: 20px;
+    margin: 20px 0;
+  }
+}

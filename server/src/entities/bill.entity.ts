@@ -50,6 +50,9 @@ export class Bill {
   @Column({ nullable: true })
   username: string;
 
+  @Column({ nullable: true })
+  userId: string;
+
   @ManyToOne(() => User, { onDelete: 'CASCADE' })
   @JoinColumn({ name: 'user_id' })
   user: User;

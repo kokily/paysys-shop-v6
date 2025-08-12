@@ -4,6 +4,7 @@ import headerReducer from './slices/headerSlice';
 import nativeReducer from './slices/nativeSlice';
 import menuReducer from './slices/menuSlice';
 import cartReducer from './slices/cartSlice';
+import billReducer from './slices/billSlice';
 import modalReducer from './slices/modalSlice';
 
 export const store = configureStore({
@@ -13,6 +14,7 @@ export const store = configureStore({
     native: nativeReducer,
     menu: menuReducer,
     cart: cartReducer,
+    bill: billReducer,
     modal: modalReducer,
   },
 });

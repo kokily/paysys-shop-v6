@@ -14,13 +14,10 @@ function ViewCart() {
     totalAmount,
     loading,
     error,
-    modal,
     onChange,
     onAddBill,
     onRemoveOneCart,
     onModalClick,
-    onCancel,
-    onConfirm,
   } = useCart();
 
   if (error) {
@@ -54,8 +51,6 @@ function ViewCart() {
           전체삭제
         </Button>
       </form>
-
-      <div>Modal</div>
     </div>
   )
 }

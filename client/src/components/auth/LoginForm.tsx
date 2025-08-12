@@ -38,7 +38,7 @@ function LoginForm() {
           로그인
         </Link>
       </div>
-      <div className='form-container'>
+      <div className='login-form-container'>
         <form onSubmit={handleSubmit}>
           <div className='form-group'>
             <input
