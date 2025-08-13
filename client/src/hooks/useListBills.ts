@@ -36,10 +36,10 @@ export function useBills() {
     }
   }, [dispatch, hasMore, loading, cursor, search, hall, user_id ]);
 
-  const onReadFront = (id: string) => {
+  const onReadFront = useCallback((id: string) => {
     dispatch(setScrollY(window.scrollY));
     navigate(`/front/${id}`);
-  };
+  }, [navigate]);
 
   const onChange = useCallback((searchTerm: string) => {
     dispatch(setSearch(searchTerm));

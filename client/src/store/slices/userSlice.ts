@@ -1,16 +1,16 @@
-import type { User } from "@/types/auth.types";
-import type { ChangePasswordRequest, SetAdminRequest } from "@/types/user.types";
+import type { ChangePasswordRequest, SetAdminRequest, UserType } from "@/types/user.types";
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { changePassword, listUsers, readUser, removeUser, setAdmin } from "@/services/userService";
 
 interface UserState {
-  users: User[];
-  currentUser: User | null;
+  users: UserType[];
+  currentUser: UserType | null;
   loading: boolean;
   error: string | null;
   search: string;
   hasMore: boolean;
   cursor: string | null;
+  scrollY: number;
   form: {
     password: string;
     confirmPassword: string;
@@ -25,6 +25,7 @@ const initialState: UserState = {
   search: '',
   hasMore: true,
   cursor: null,
+  scrollY: 0,
   form: {
     password: '',
     confirmPassword: '',
@@ -142,6 +143,12 @@ const userSlice = createSlice({
         confirmPassword: '',
       };
     },
+    setScrollY: (state, action: PayloadAction<number>) => {
+      state.scrollY = action.payload;
+    },
+    clearScrollY: (state) => {
+      state.scrollY = 0;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -149,11 +156,11 @@ const userSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(listUsersAsync.fulfilled, (state, action: PayloadAction<User[]>) => {
+      .addCase(listUsersAsync.fulfilled, (state, action: PayloadAction<UserType[]>) => {
         state.loading = false;
         state.users = action.payload;
         state.cursor = action.payload.length > 0
-          ? action.payload[action.payload.length - 1].user_id : null;
+          ? action.payload[action.payload.length - 1].id : null;
         state.hasMore = action.payload.length === 30;
       })
       .addCase(listUsersAsync.rejected, (state, action) => {
@@ -163,14 +170,14 @@ const userSlice = createSlice({
 
     builder
       .addCase(loadMoreUsersAsync.pending, (state) => {
-        state.loading = false;
+        state.loading = true;
         state.error = null;
       })
-      .addCase(loadMoreUsersAsync.fulfilled, (state, action: PayloadAction<User[]>) => {
-        state.loading = true;
+      .addCase(loadMoreUsersAsync.fulfilled, (state, action: PayloadAction<UserType[]>) => {
+        state.loading = false;
         state.users = [...state.users, ...action.payload];
         state.cursor = action.payload.length > 0
-          ? action.payload[action.payload.length - 1].user_id : null;
+          ? action.payload[action.payload.length - 1].id : null;
         state.hasMore = action.payload.length === 30;
       })
       .addCase(loadMoreUsersAsync.rejected, (state, action) => {
@@ -183,7 +190,7 @@ const userSlice = createSlice({
         state.loading = true;
         state.error = null;
       })
-      .addCase(readUserAsync.fulfilled, (state, action: PayloadAction<User>) => {
+      .addCase(readUserAsync.fulfilled, (state, action: PayloadAction<UserType>) => {
         state.loading = false;
         state.currentUser = action.payload;
       })
@@ -200,9 +207,9 @@ const userSlice = createSlice({
       .addCase(removeUserAsync.fulfilled, (state, action: PayloadAction<{ id: string; message: string }>) => {
         state.loading = false;
         // 삭제된 사용자 리스트에서 제거
-        state.users = state.users.filter(user => user.user_id !== action.payload.id);
+        state.users = state.users.filter(user => user.id !== action.payload.id);
         // 현재 선택된 사용자가 삭제된 경우 null로 설정
-        if (state.currentUser?.user_id === action.payload.id) {
+        if (state.currentUser?.id === action.payload.id) {
           state.currentUser = null;
         }
       })
@@ -219,14 +226,14 @@ const userSlice = createSlice({
       .addCase(setAdminAsync.fulfilled, (state, action: PayloadAction<{ id: string; isAdmin: boolean; message: string }>) => {
         state.loading = false;
         // 리스트에서 해당 사용자의 Admin 권한 업데이트
-        const user = state.users.find(u => u.user_id === action.payload.id);
+        const user = state.users.find(u => u.id === action.payload.id);
 
         if (user) {
           user.admin = action.payload.isAdmin;
         };
 
         // 현재 선택된 사용자가 업데이트 된 경우 권한 변경
-        if (state.currentUser?.user_id === action.payload.id) {
+        if (state.currentUser?.id === action.payload.id) {
           state.currentUser.admin = action.payload.isAdmin;
         };
       })
@@ -257,5 +264,7 @@ export const {
   clearCurrentUser,
   updateForm,
   clearForm,
+  setScrollY,
+  clearScrollY,
 } = userSlice.actions;
 export default userSlice.reducer;

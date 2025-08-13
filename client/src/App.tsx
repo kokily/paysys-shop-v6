@@ -16,6 +16,8 @@ import ListMenuPage from "./pages/menu/ListMenuPage";
 import ReadMenuPage from "./pages/menu/ReadMenuPage";
 import ModalPortal from "./components/common/Modal";
 import ChangePasswordPage from "./pages/password/ChangePasswordPage";
+import ListUsersPage from "./pages/users/ListUsersPage";
+import ReadUserPage from "./pages/users/ReadUserPage";
 
 
 function App() {
@@ -117,6 +119,24 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ChangePasswordPage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/users"
+              element={
+                <ProtectedRoute>
+                  <ListUsersPage />
+                </ProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/users/:id"
+              element={
+                <ProtectedRoute>
+                  <ReadUserPage />
                 </ProtectedRoute>
               }
             />

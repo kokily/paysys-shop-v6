@@ -1,5 +1,4 @@
-import type { User } from "@/types/auth.types";
-import type { ChangePasswordRequest, ListUsersParams, SetAdminRequest } from "@/types/user.types";
+import type { ChangePasswordRequest, SetAdminRequest, UserType } from "@/types/user.types";
 import api from "./api";
 
 /**
@@ -7,11 +6,14 @@ import api from "./api";
  * @param params 조회 조건 (Cursor, 사용자명 필터)
  * @returns 사용자 리스트
  */
-export const listUsers = async (params?: ListUsersParams): Promise<User[]> => {
+export const listUsers = async (params: {
+  cursor?: string;
+  username?: string;
+}): Promise<UserType[]> => {
   const queryParams = new URLSearchParams();
 
-  if (params?.cursor) queryParams.append('cursor', params.cursor);
-  if (params?.username) queryParams.append('username', params.username);
+  if (params.cursor) queryParams.append('cursor', params.cursor);
+  if (params.username) queryParams.append('username', params.username);
 
   const response = await api.get(`/users?${queryParams.toString()}`);
   return response.data;
@@ -22,7 +24,7 @@ export const listUsers = async (params?: ListUsersParams): Promise<User[]> => {
  * @param id 사용자 ID
  * @returns 사용자 상세 정보
  */
-export const readUser = async (id: string): Promise<User> => {
+export const readUser = async (id: string): Promise<UserType> => {
   const response = await api.get(`/users/${id}`);
   return response.data;
 };

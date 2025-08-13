@@ -133,7 +133,8 @@ const billSlice = createSlice({
       .addCase(listBillsAsync.fulfilled, (state, action: PayloadAction<BillType[]>) => {
         state.loading = false;
         state.bills = action.payload;
-        state.cursor = action.payload.length > 0 ? action.payload[action.payload.length - 1].id : null;
+        state.cursor = action.payload.length > 0
+          ? action.payload[action.payload.length - 1].id : null;
         state.hasMore = action.payload.length === 30;
       })
       .addCase(listBillsAsync.rejected, (state, action) => {
@@ -144,11 +145,13 @@ const billSlice = createSlice({
     builder
       .addCase(loadMoreBillsAsync.pending, (state) => {
         state.loading = true;
+        state.error = null;
       })
       .addCase(loadMoreBillsAsync.fulfilled, (state, action: PayloadAction<BillType[]>) => {
         state.loading = false;
         state.bills = [...state.bills, ...action.payload];
-        state.cursor = action.payload.length > 0 ? action.payload[action.payload.length - 1].id : null;
+        state.cursor = action.payload.length > 0
+          ? action.payload[action.payload.length - 1].id : null;
         state.hasMore = action.payload.length === 30;
       })
       .addCase(loadMoreBillsAsync.rejected, (state, action) => {

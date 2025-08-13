@@ -34,7 +34,7 @@ export class UsersService {
         'users.created_at',
         'users.updated_at',
       ])
-      .limit(20)
+      .limit(30)
       .orderBy('users.created_at', 'DESC')
       .addOrderBy('users.id', 'DESC');
 
