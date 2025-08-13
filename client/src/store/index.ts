@@ -6,6 +6,7 @@ import menuReducer from './slices/menuSlice';
 import cartReducer from './slices/cartSlice';
 import billReducer from './slices/billSlice';
 import reserveReducer from './slices/reserveSlice';
+import userReducer from './slices/userSlice';
 import modalReducer from './slices/modalSlice';
 
 export const store = configureStore({
@@ -17,6 +18,7 @@ export const store = configureStore({
     cart: cartReducer,
     bill: billReducer,
     reserve: reserveReducer,
+    user: userReducer,
     modal: modalReducer,
   },
 });

@@ -46,7 +46,7 @@ export class UsersController {
    * @param req 인증된 사용자 정보
    * @returns 사용자 상세 정보
    */
-  @Get()
+  @Get(':id')
   @UseGuards(JwtAuthGuard, AdminGuard)
   @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: '특정 사용자 상세 조회(관리자)' })
