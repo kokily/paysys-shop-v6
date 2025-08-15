@@ -21,10 +21,12 @@ const modalSlice = createSlice({
       state.confirmText = action.payload.confirmText;
       state.cancelText = action.payload.cancelText;
       state.actionType = action.payload.actionType;
+      state.onConfirm = action.payload.onConfirm;
     },
     hideModal: (state) => {
       state.isOpen = false;
       state.actionType = null;
+      state.onConfirm = undefined
     },
   },
 });

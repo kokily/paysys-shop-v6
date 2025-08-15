@@ -1,5 +1,5 @@
 import type { PayloadAction } from "@reduxjs/toolkit";
-import type { ItemType } from "@/types/menu.types";
+import type { MenuItemType } from "@/types/menu.types";
 import type { AddCartRequest, CartInputs } from "@/types/cart.types";
 import { listMenu, readMenu } from "@/services/menuService";
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
@@ -11,8 +11,8 @@ export interface FilterType {
 }
 
 interface MenuState {
-  menuList: ItemType[];
-  currentMenu: ItemType | null;
+  menuList: MenuItemType[];
+  currentMenu: MenuItemType | null;
   loading: boolean;
   error: string | null;
   filters: FilterType;

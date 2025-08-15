@@ -1,0 +1,16 @@
+.list-items-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+
+  h1 {
+    text-align: center;
+  }
+
+  .observer {
+    height: 20px;
+    margin: 20px 0;
+  }
+}

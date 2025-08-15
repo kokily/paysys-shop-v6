@@ -1,9 +1,9 @@
-import type { ItemType } from '@/types/menu.types';
+import type { MenuItemType } from '@/types/menu.types';
 import { unitOfAccount } from '@/utils/menuUtils';
 import './MenuItem.scss';
 
 interface Props {
-  item: ItemType;
+  item: MenuItemType;
   onReadItem: (id: string) => void;
 }
 

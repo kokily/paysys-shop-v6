@@ -1,0 +1,14 @@
+.item-buttons-container {
+  display: contents;
+  margin-top: 1rem;
+
+  button {
+    margin-right: 0.5rem;
+  }
+
+  @include large {
+    width: 1200px;
+    padding-left: 15rem;
+    padding-right: 15rem;
+  }
+}

@@ -1,0 +1,45 @@
+.add-item-container {
+  position: absolute;
+  width: 320px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: 0.5s ease-out 0s 1 fadeIn;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+
+  @include shadow(2);
+
+  .add-item-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 5rem;
+    background-color: $member-color;
+    color: white;
+    font-size: 2rem;
+    font-weight: 800;
+    letter-spacing: 5px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    cursor: pointer;
+  }
+
+  .add-item-form {
+    height: auto;
+    padding: 2rem;
+    background-color: white;
+  }
+
+  .add-item-buttons-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    button {
+      margin-top: 5px;
+      margin-bottom: 5px;
+    }
+  }
+}

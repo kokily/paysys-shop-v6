@@ -1,4 +1,4 @@
-import type { ItemType } from "@/types/menu.types"
+import type { MenuItemType } from "@/types/menu.types"
 import api from "./api";
 import type { FilterType } from "@/store/slices/menuSlice";
 
@@ -9,7 +9,7 @@ import type { FilterType } from "@/store/slices/menuSlice";
  * @param params 조회 파라미터 (divide, native)
  * @returns 메뉴 리스트 데이터
  */
-export const listMenu = async ({ divide, native }: FilterType): Promise<ItemType[]> => {
+export const listMenu = async ({ divide, native }: FilterType): Promise<MenuItemType[]> => {
   const response = await api.get('/items', { params: { divide, native } });
   return response.data;
 };
@@ -21,7 +21,7 @@ export const listMenu = async ({ divide, native }: FilterType): Promise<ItemType
  * @param id 메뉴 ID (uuid)
  * @returns 메뉴 상세 데이터
  */
-export const readMenu = async (id: string): Promise<ItemType> => {
+export const readMenu = async (id: string): Promise<MenuItemType> => {
   const response = await api.get(`/items/${id}`);
   return response.data;
 }

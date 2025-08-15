@@ -21,7 +21,7 @@ function ModalPortal() {
 
   if (!isOpen) return null;
 
-  const handleConfirm = async () => {
+  const handleConfirm = async () => {    
     try {
       switch (actionType) {
         case 'REMOVE_CART':
@@ -29,6 +29,7 @@ function ModalPortal() {
           showToast.success('카트 삭제');
           break;
         case 'REMOVE_BILL':
+        case 'REMOVE_ITEM':
           if (onConfirm) {
             onConfirm();
           }
@@ -37,6 +38,7 @@ function ModalPortal() {
           break;
       }
     } catch (error: any) {
+      console.log('에러 발생:', error);
       showToast.error(error.message || '작업 실패');
     }
   };

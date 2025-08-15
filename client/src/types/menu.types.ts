@@ -12,7 +12,7 @@ export interface MenuCategory {
   items: MenuType[];
 }
 
-export interface ItemType {
+export interface MenuItemType {
   id: string;
   num: number;
   name: string;

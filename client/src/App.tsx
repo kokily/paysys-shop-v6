@@ -18,6 +18,10 @@ import ModalPortal from "./components/common/Modal";
 import ChangePasswordPage from "./pages/password/ChangePasswordPage";
 import ListUsersPage from "./pages/users/ListUsersPage";
 import ReadUserPage from "./pages/users/ReadUserPage";
+import ListItemsPage from "./pages/items/ListItemsPage";
+import ReadItemPage from "./pages/items/ReadItemPage";
+import AddItemPage from "./pages/items/AddItemPage";
+import UpdateItemPage from "./pages/items/UpdateItemPage";
 
 
 function App() {
@@ -41,105 +45,22 @@ function App() {
       <Router>
         <div className="App">
           <Routes>
-            <Route
-              path="/"
-              element={isAuthenticated
-                ? <Navigate to="/member" />
-                : <LoginPage />
-              }
-            />
-            <Route
-              path="/member"
-              element={
-                <ProtectedRoute>
-                  <MemberPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/associate"
-              element={
-                <ProtectedRoute>
-                  <AssociatePage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/general"
-              element={
-                <ProtectedRoute>
-                  <GeneralPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/menu"
-              element={
-                <ProtectedRoute>
-                  <ListMenuPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/menu/:id"
-              element={
-                <ProtectedRoute>
-                  <ReadMenuPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/cart"
-              element={
-                <ProtectedRoute>
-                  <CartPage />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/fronts"
-              element={
-                <ProtectedRoute>
-                  <ListFrontsPage />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/front/:id"
-              element={
-                <ProtectedRoute>
-                  <ReadFrontPage />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/password"
-              element={
-                <ProtectedRoute>
-                  <ChangePasswordPage />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/users"
-              element={
-                <ProtectedRoute>
-                  <ListUsersPage />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/users/:id"
-              element={
-                <ProtectedRoute>
-                  <ReadUserPage />
-                </ProtectedRoute>
-              }
-            />
+            <Route path="/" element={isAuthenticated ? <Navigate to="/member" /> : <LoginPage />} />
+            <Route path="/member" element={<ProtectedRoute><MemberPage /></ProtectedRoute>} />
+            <Route path="/associate" element={<ProtectedRoute><AssociatePage /></ProtectedRoute>} />
+            <Route path="/general" element={<ProtectedRoute><GeneralPage /></ProtectedRoute>} />
+            <Route path="/menu" element={<ProtectedRoute><ListMenuPage /></ProtectedRoute>} />
+            <Route path="/menu/:id" element={<ProtectedRoute><ReadMenuPage /></ProtectedRoute>} />
+            <Route path="/cart" element={<ProtectedRoute><CartPage /></ProtectedRoute>} />
+            <Route path="/fronts" element={<ProtectedRoute><ListFrontsPage /></ProtectedRoute>} />
+            <Route path="/front/:id" element={<ProtectedRoute><ReadFrontPage /></ProtectedRoute>} />
+            <Route path="/password" element={<ProtectedRoute><ChangePasswordPage /></ProtectedRoute>} />
+            <Route path="/users" element={<ProtectedRoute><ListUsersPage /></ProtectedRoute>} />
+            <Route path="/users/:id" element={<ProtectedRoute><ReadUserPage /></ProtectedRoute>} />
+            <Route path="/items" element={<ProtectedRoute><ListItemsPage /></ProtectedRoute>} />
+            <Route path="/item/:id" element={<ProtectedRoute><ReadItemPage /></ProtectedRoute>} />
+            <Route path="/items/add" element={<ProtectedRoute><AddItemPage /></ProtectedRoute>} />
+            <Route path="/items/update/:id" element={<ProtectedRoute><UpdateItemPage /></ProtectedRoute>} />
           </Routes>
           <ToastPortal />
           <ModalPortal />

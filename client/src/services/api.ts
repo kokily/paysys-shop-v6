@@ -1,3 +1,5 @@
+import { store } from '@/store';
+import { resetStore } from '@/store/slices/rootSlice';
 import axios from 'axios';
 
 /**
@@ -35,6 +37,8 @@ api.interceptors.response.use(
   (error) => {
     if (error.response?.status === 401) {
       localStorage.removeItem('token');
+      store.dispatch(resetStore());
+      window.location.href = '/';
     }
 
     return Promise.reject(error);

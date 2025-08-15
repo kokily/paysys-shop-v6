@@ -1,9 +1,9 @@
 import { useCallback, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { readUserAsync, removeUserAsync, setAdminAsync } from "@/store/slices/userSlice";
+import { clearUsers, readUserAsync, removeUserAsync, setAdminAsync } from "@/store/slices/userSlice";
 import { showToast } from "@/utils/toast";
-import { showModal } from "@/store/slices/modalSlice";
+import { hideModal, showModal } from "@/store/slices/modalSlice";
 
 export function useReadUser() {
   const navigate = useNavigate();
@@ -33,6 +33,8 @@ export function useReadUser() {
   const onRemoveUser = useCallback(async () => {
     try {
       await dispatch(removeUserAsync(id!)).unwrap();
+      dispatch(clearUsers());
+      dispatch(hideModal());
       navigate('/users');
       showToast.success('사용자가 삭제되었습니다.');
     } catch (error: any) {
@@ -47,7 +49,7 @@ export function useReadUser() {
       confirmText: '삭제',
       cancelText: '취소',
       actionType: 'REMOVE_USER',
-      onConfirm: () => onRemoveUser(),
+      onConfirm: onRemoveUser,
     }));
   }, [dispatch, onRemoveUser]);
 

@@ -1,8 +1,8 @@
 import { useCallback, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { readBillAsync, removeBillAsync, restoreBillAsync } from "@/store/slices/billSlice";
-import { showModal } from "@/store/slices/modalSlice";
+import { clearBills, readBillAsync, removeBillAsync, restoreBillAsync } from "@/store/slices/billSlice";
+import { hideModal, showModal } from "@/store/slices/modalSlice";
 import { removeReserveAsync } from "@/store/slices/reserveSlice";
 import { showToast } from "@/utils/toast";
 
@@ -44,6 +44,8 @@ export function useReadBill() {
   const onRemoveBill = useCallback(async () => {
     try {
       await dispatch(removeBillAsync(id!)).unwrap();
+      dispatch(clearBills());
+      dispatch(hideModal());
       navigate('/fronts');
     } catch (error: any) {
       showToast.error(error.message || '에러 발생!');
@@ -63,9 +65,9 @@ export function useReadBill() {
       confirmText: '삭제',
       cancelText: '취소',
       actionType: 'REMOVE_BILL',
-      onConfirm: () => onRemoveBill(),
+      onConfirm: onRemoveBill,
     }));
-  }, [dispatch])
+  }, [dispatch, onRemoveBill]);
 
   return {
     bill: currentBill,
