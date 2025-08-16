@@ -11,6 +11,7 @@ import { NotificationModule } from './modules/notifications/notification.module'
 import { UsersModule } from './modules/users/users.module';
 import { UploadsModule } from './modules/uploads/uploads.module';
 import { WeddingsModule } from './modules/weddings/weddings.module';
+import { SignModule } from './modules/sign/sign.module';
 
 @Module({
   imports: [
@@ -35,6 +36,7 @@ import { WeddingsModule } from './modules/weddings/weddings.module';
     UsersModule,
     UploadsModule,
     WeddingsModule,
+    SignModule,
     NotificationModule,
   ],
   controllers: [AppController],

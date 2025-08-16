@@ -1,0 +1,17 @@
+.list-weddings-container {
+  margin-bottom: 4.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+
+  h2 {
+    text-align: center;
+  }
+
+  .observer {
+    height: 20px;
+    margin: 20px 0;
+  }
+}

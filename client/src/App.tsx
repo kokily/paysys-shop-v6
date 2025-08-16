@@ -22,6 +22,10 @@ import ListItemsPage from "./pages/items/ListItemsPage";
 import ReadItemPage from "./pages/items/ReadItemPage";
 import AddItemPage from "./pages/items/AddItemPage";
 import UpdateItemPage from "./pages/items/UpdateItemPage";
+import ListWeddingsPage from "./pages/weddings/ListWeddingsPage";
+import ReadWeddingsPage from "./pages/weddings/ReadWeddingPage";
+import AddWeddingsPage from "./pages/weddings/AddWeddingPage";
+import UpdateWeddingsPage from "./pages/weddings/UpdateWeddingPage";
 
 
 function App() {
@@ -61,6 +65,10 @@ function App() {
             <Route path="/item/:id" element={<ProtectedRoute><ReadItemPage /></ProtectedRoute>} />
             <Route path="/items/add" element={<ProtectedRoute><AddItemPage /></ProtectedRoute>} />
             <Route path="/items/update/:id" element={<ProtectedRoute><UpdateItemPage /></ProtectedRoute>} />
+            <Route path="/weddings" element={<ProtectedRoute><ListWeddingsPage /></ProtectedRoute>} />
+            <Route path="/wedding/:id" element={<ProtectedRoute><ReadWeddingsPage /></ProtectedRoute>} />
+            <Route path="/weddings/add" element={<ProtectedRoute><AddWeddingsPage /></ProtectedRoute>} />
+            <Route path="/weddings/update/:id" element={<ProtectedRoute><UpdateWeddingsPage /></ProtectedRoute>} />
           </Routes>
           <ToastPortal />
           <ModalPortal />

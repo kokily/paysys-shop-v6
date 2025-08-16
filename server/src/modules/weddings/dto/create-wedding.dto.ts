@@ -11,10 +11,6 @@ export class CreateWeddingDto {
   @IsString()
   husband_image: string;
 
-  @ApiProperty({ description: '신랑 예식비용' })
-  @IsNumber()
-  husband_cost: number;
-
   @ApiProperty({ description: '신랑 식사비용' })
   @IsNumber()
   husband_meal: number;
@@ -23,25 +19,13 @@ export class CreateWeddingDto {
   @IsNumber()
   husband_present: number;
   
-  @ApiProperty({ description: '신랑 예약금' })
-  @IsNumber()
-  husband_reserve: number;
-  
   @ApiProperty({ description: '신랑 웨딩홀 사용료' })
   @IsNumber()
   husband_hall: number;
   
-  @ApiProperty({ description: '신랑 예도세트' })
-  @IsNumber()
-  husband_sword_set: number;
-  
-  @ApiProperty({ description: '신랑 예도' })
+  @ApiProperty({ description: '신랑 예도물품' })
   @IsNumber()
   husband_sword: number;
-  
-  @ApiProperty({ description: '신랑 장갑' })
-  @IsNumber()
-  husband_glove: number;
   
   @ApiProperty({ description: '신랑 부케' })
   @IsNumber()
@@ -84,10 +68,6 @@ export class CreateWeddingDto {
   @IsString()
   bride_image: string;
 
-  @ApiProperty({ description: '신부 예식비용' })
-  @IsNumber()
-  bride_cost: number;
-
   @ApiProperty({ description: '신부 식사비용' })
   @IsNumber()
   bride_meal: number;
@@ -95,26 +75,14 @@ export class CreateWeddingDto {
   @ApiProperty({ description: '신부 답례품' })
   @IsNumber()
   bride_present: number;
-  
-  @ApiProperty({ description: '신부 예약금' })
-  @IsNumber()
-  bride_reserve: number;
-  
+    
   @ApiProperty({ description: '신부 웨딩홀 사용료' })
   @IsNumber()
   bride_hall: number;
   
-  @ApiProperty({ description: '신부 예도세트' })
-  @IsNumber()
-  bride_sword_set: number;
-  
-  @ApiProperty({ description: '신부 예도' })
+  @ApiProperty({ description: '신부 예도물품' })
   @IsNumber()
   bride_sword: number;
-  
-  @ApiProperty({ description: '신부 장갑' })
-  @IsNumber()
-  bride_glove: number;
   
   @ApiProperty({ description: '신부 부케' })
   @IsNumber()
@@ -156,4 +124,36 @@ export class CreateWeddingDto {
   @ApiProperty({ description: '행사 시간 (예: 11:30, 13:00, 14:30, 16:00, 17:30)' })
   @IsString()
   event_at: string;
+
+  @ApiProperty({ description: '식대 분할 방법' })
+  @IsString()
+  meal_method: string;
+
+  @ApiProperty({ description: '식대 단가' })
+  @IsNumber()
+  meal_price: number;
+
+  @ApiProperty({ description: '답례품 분할 방법' })
+  @IsString()
+  present_method: string;
+
+  @ApiProperty({ description: '답례품 단가' })
+  @IsNumber()
+  present_price: number;
+
+  @ApiProperty({ description: '예약금 분할 방법' })
+  @IsString()
+  reserve_method: string;
+
+  @ApiProperty({ description: '예약금 단가' })
+  @IsNumber()
+  reserve_price: number;
+
+  @ApiProperty({ description: '신랑 선 입금' })
+  @IsNumber()
+  husband_pre_deposit: number;
+
+  @ApiProperty({ description: '신부 선 입금' })
+  @IsNumber()
+  bride_pre_deposit: number;
 }

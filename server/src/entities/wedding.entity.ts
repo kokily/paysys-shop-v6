@@ -6,15 +6,9 @@ export class Wedding {
   id: string;
 
   /**
-   * 신랑 신부 공통
-   * cost -> 예식비용 (합산)
-   * meal -> 식사비용
-   * present -> 답례품비용
-   * reserve -> 예약금
+   * 신랑 신부 공통   
    * hall -> 웨딩홀 사용료
-   * sword_set -> 예도세트
-   * sword -> 예도
-   * glove -> 장갑
+   * sword -> 예도물품
    * bouquet -> 부케
    * company -> 웨딩업체
    * owner_woman -> 혼주미용(여)
@@ -23,6 +17,10 @@ export class Wedding {
    * file -> 원본파일
    * dvd -> DVD
    * etc -> 기타
+   * meal -> 식사비용
+   * present -> 답례품비용
+   * reserve -> 예약금
+   * pre_deposit -> 선 입금
    */
   // 신랑
   @Column({ name: 'husband_name', type: 'text' })
@@ -31,29 +29,17 @@ export class Wedding {
   @Column({ name: 'husband_image', type: 'text', nullable: true })
   husband_image: string;
 
-  @Column({ name: 'husband_cost', type: 'int' })
-  husband_cost: number;
-
   @Column({ name: 'husband_meal', type: 'int' })
   husband_meal: number;
 
   @Column({ name: 'husband_present', type: 'int' })
   husband_present: number;
 
-  @Column({ name: 'husband_reserve', type: 'int' })
-  husband_reserve: number;
-
   @Column({ name: 'husband_hall', type: 'int' })
   husband_hall: number;
 
-  @Column({ name: 'husband_sword_set', type: 'int' })
-  husband_sword_set: number;
-
   @Column({ name: 'husband_sword', type: 'int' })
   husband_sword: number;
-
-  @Column({ name: 'husband_glove', type: 'int' })
-  husband_glove: number;
 
   @Column({ name: 'husband_bouquet', type: 'int' })
   husband_bouquet: number;
@@ -86,29 +72,17 @@ export class Wedding {
   @Column({ name: 'bride_image', type: 'text', nullable: true })
   bride_image: string;
 
-  @Column({ name: 'bride_cost', type: 'int' })
-  bride_cost: number;
-
   @Column({ name: 'bride_meal', type: 'int' })
   bride_meal: number;
 
   @Column({ name: 'bride_present', type: 'int' })
   bride_present: number;
 
-  @Column({ name: 'bride_reserve', type: 'int' })
-  bride_reserve: number;
-
   @Column({ name: 'bride_hall', type: 'int' })
   bride_hall: number;
 
-  @Column({ name: 'bride_sword_set', type: 'int' })
-  bride_sword_set: number;
-
   @Column({ name: 'bride_sword', type: 'int' })
   bride_sword: number;
-
-  @Column({ name: 'bride_glove', type: 'int' })
-  bride_glove: number;
 
   @Column({ name: 'bride_bouquet', type: 'int' })
   bride_bouquet: number;
@@ -140,6 +114,32 @@ export class Wedding {
 
   @Column({ name: 'event_at', type: 'text' })
   event_at: string;
+
+  // 분할 방법 및 단가
+  @Column({ name: 'meal_method', type: 'text' })
+  meal_method: string;
+
+  @Column({ name: 'meal_price', type: 'int' })
+  meal_price: number;
+
+  @Column({ name: 'present_method', type: 'text' })
+  present_method: string;
+
+  @Column({ name: 'present_price', type: 'int' })
+  present_price: number;
+
+  @Column({ name: 'reserve_method', type: 'text' })
+  reserve_method: string;
+
+  @Column({ name: 'reserve_price', type: 'int' })
+  reserve_price: number;
+
+  // 선 입금
+  @Column({ name: 'husband_pre_deposit', type: 'int' })
+  husband_pre_deposit: number;
+
+  @Column({ name: 'bride_pre_deposit', type: 'int' })
+  bride_pre_deposit: number;
 
   // 공통사항
   @CreateDateColumn({ name: 'created_at', type: 'timestamptz' })

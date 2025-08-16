@@ -13,51 +13,50 @@ export class WeddingsService {
     private readonly weddingRepository: Repository<Wedding>,
   ) {}
 
+  private maskingName(name: string): string {
+    if (name.length > 2) {
+      let originalName = name.split('');
+  
+      originalName.map((_, i) => {
+        if (i === 0 || i === originalName.length - 1) return;
+  
+        originalName[i] = '*';
+      });
+  
+      let combineName = originalName.join();
+  
+      return combineName.replace(/,/g, '');
+    } else {
+      return name.replace(/.$/, '*');
+    }
+  }
+
   /**
    * 웨딩 정보 생성
    * @param createWeddingDto 웨딩 생성 데이터
    * @returns 생성된 웨딩 정보
    */
   async create(createWeddingDto: CreateWeddingDto): Promise<Wedding> {
-    const wedding = this.weddingRepository.create(createWeddingDto);
+    const source = this.weddingRepository.create(createWeddingDto);
+
+    const wedding = {
+      ...source,
+      husband_name: this.maskingName(source.husband_name),
+      bride_name: this.maskingName(source.bride_name),
+    };
+
     return this.weddingRepository.save(wedding);
   }
 
   /**
    * 웨딩 리스트 조회
-   * - 필터링: 신랑/부 이름, 날짜 범위
    * @param listWeddingsDto 조회 조건
    * @returns 웨딩 리스트
    */
   async findAll(listWeddingsDto: ListWeddingsDto): Promise<Wedding[]> {
-    const { husband_name, bride_name, start_date, end_date, limit = 10, cursor } = listWeddingsDto;
+    const { limit = 10, cursor } = listWeddingsDto;
 
     const query = this.weddingRepository.createQueryBuilder('wedding')
-
-    // 필터링 조건 추가
-    if (husband_name) {
-      query.andWhere('wedding.husband_name LIKE :husband_name', {
-        husband_name: `%${husband_name}%`
-      });
-    }
-
-    if (bride_name) {
-      query.andWhere('wedding.bride_name LIKE :bride_name', {
-        bride_name: `%${bride_name}%`
-      });
-    }
-
-    if (start_date) {
-      query.andWhere('wedding.wedding_at >= :start_date', {
-        start_date: new Date(start_date)
-      });
-    }
-
-    if (end_date) {
-      query.andWhere('wedding.wedding_at >= :end_date', {
-        end_date: new Date(end_date)
-      });
-    }
 
     if (cursor) {
       query.andWhere('wedding.id > :cursor', { cursor });

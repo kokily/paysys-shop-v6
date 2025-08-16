@@ -10,13 +10,16 @@ import billReducer from './slices/billSlice';
 import reserveReducer from './slices/reserveSlice';
 import userReducer from './slices/userSlice';
 import itemReducer from './slices/itemSlice';
+import signReducer from './slices/signSlice';
+import weddingReducer from './slices/weddingSlice';
+import mobileReducer from './slices/mobileSlice';
 import modalReducer from './slices/modalSlice';
 import rootSlice from './slices/rootSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['bill', 'cart', 'header', 'item', 'menu', 'native', 'reserve', 'user'],
+  whitelist: ['bill', 'cart', 'header', 'item', 'menu', 'native', 'reserve', 'user', 'sign', 'wedding'],
   blacklist: ['modal', 'auth'],
 };
 
@@ -30,6 +33,9 @@ const rootReducer = combineReducers({
   reserve: reserveReducer,
   user: userReducer,
   item: itemReducer,
+  sign: signReducer,
+  wedding: weddingReducer,
+  mobile: mobileReducer,
   modal: modalReducer,
   root: rootSlice,
 });
