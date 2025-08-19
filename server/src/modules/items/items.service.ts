@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Item } from 'src/entities/item.entity';
 import { Repository } from 'typeorm';
@@ -6,7 +6,7 @@ import { AddItemDto } from './dto/add-item.dto';
 import { ListItemsDto } from './dto/list-items.dto';
 import { UpdateItemDto } from './dto/update-item.dto';
 
-const MESSAGE_401 = '해당 품목을 찾을 수 없습니다.';
+const MESSAGE_404 = '해당 품목을 찾을 수 없습니다.';
 
 @Injectable()
 export class ItemsService {
@@ -23,8 +23,6 @@ export class ItemsService {
    * @returns 생성된 품목
    */
   async addItem(addItemDto: AddItemDto): Promise<Item> {
-    const { name, divide, native, unit, price } = addItemDto;
-
     const itemCount = await this.itemRepository.count();
     const item = this.itemRepository.create({
       ...addItemDto,
@@ -64,7 +62,7 @@ export class ItemsService {
       const cursorItem = await this.itemRepository.findOne({ where: { id: cursor } });
 
       if (!cursorItem) {
-        throw new UnauthorizedException(MESSAGE_401);
+        throw new NotFoundException(MESSAGE_404);
       }
 
       query.andWhere('items.num < :num', { num: cursorItem.num });
@@ -84,7 +82,7 @@ export class ItemsService {
     const item = await this.itemRepository.findOne({ where: { id } });
 
     if (!item) {
-      throw new UnauthorizedException(MESSAGE_401);
+      throw new NotFoundException(MESSAGE_404);
     }
 
     return item;
@@ -102,7 +100,7 @@ export class ItemsService {
     const item = await this.itemRepository.findOne({ where: { id } });
 
     if (!item) {
-      throw new UnauthorizedException(MESSAGE_401);
+      throw new NotFoundException(MESSAGE_404);
     }
 
     await this.itemRepository.delete(id);

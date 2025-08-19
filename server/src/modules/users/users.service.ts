@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import bcrypt from 'bcryptjs';
@@ -8,7 +8,7 @@ import { SetAdminDto } from './dto/set-admin.dto';
 
 type UserWithoutPassword = Omit<User, 'password'>;
 
-const MESSAGE_401 = '존재하지 않는 사용자입니다.';
+const MESSAGE_404 = '존재하지 않는 사용자입니다.';
 
 @Injectable()
 export class UsersService {
@@ -46,7 +46,7 @@ export class UsersService {
       const cursorUser = await this.userRepository.findOne({ where: { id: cursor } });
 
       if (!cursorUser) {
-        throw new UnauthorizedException(MESSAGE_401);
+        throw new NotFoundException(MESSAGE_404);
       }
 
       query.andWhere('(users.created_at < :date OR (users.created_at = :date AND users.id < :id', {
@@ -73,7 +73,7 @@ export class UsersService {
     const user = await this.userRepository.findOne({ where: { id } });
 
     if (!user) {
-      throw new UnauthorizedException(MESSAGE_401);
+      throw new NotFoundException(MESSAGE_404);
     }
 
     return this.withOutPassword(user);
@@ -90,7 +90,7 @@ export class UsersService {
     const user = await this.userRepository.findOne({ where: { id } });
 
     if (!user) {
-      throw new UnauthorizedException(MESSAGE_401);
+      throw new NotFoundException(MESSAGE_404);
     }
 
     await this.userRepository.delete(id);
@@ -113,7 +113,7 @@ export class UsersService {
     const user = await this.userRepository.findOne({ where: { id } });
 
     if (!user) {
-      throw new UnauthorizedException(MESSAGE_401);
+      throw new NotFoundException(MESSAGE_404);
     }
 
     user.admin = isAdmin;
@@ -137,7 +137,7 @@ export class UsersService {
     const user = await this.userRepository.findOne({ where: { id: userId } });
 
     if (!user) {
-      throw new UnauthorizedException(MESSAGE_401);
+      throw new NotFoundException(MESSAGE_404);
     }
 
     const hashedPassword = await bcrypt.hash(newPassword, 10);
