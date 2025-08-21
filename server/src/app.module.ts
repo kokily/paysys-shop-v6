@@ -8,6 +8,7 @@ import { UsersModule } from './modules/users/users.module';
 import { ItemsModule } from './modules/items/items.module';
 import { CartModule } from './modules/cart/cart.module';
 import { BillsModule } from './modules/bills/bills.module';
+import { NotificationModule } from './modules/notifications/notification.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { BillsModule } from './modules/bills/bills.module';
     ItemsModule,
     CartModule,
     BillsModule,
+    NotificationModule,
   ],
   controllers: [AppController],
   providers: [AppService],
