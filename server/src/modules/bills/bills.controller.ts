@@ -13,7 +13,7 @@ export const FORBIDDEN_403_MESSAGE = '권한이 없습니다.';
 @ApiTags('Bills')
 @Controller('bills')
 export class BillsController {
-  constructor(private billsService: BillsService) {}
+  constructor(private readonly billsService: BillsService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard)

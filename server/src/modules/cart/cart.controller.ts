@@ -8,7 +8,7 @@ import { AddCartDto } from './dto/add-cart.dto';
 @ApiTags('Cart')
 @Controller('cart')
 export class CartController {
-  constructor(private cartService: CartService) {}
+  constructor(private readonly cartService: CartService) {}
 
   @Post()
   @UseGuards(JwtAuthGuard)
