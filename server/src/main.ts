@@ -15,7 +15,7 @@ async function bootstrap() {
       whitelist: true,
       forbidNonWhitelisted: true,
       transform: true,
-    }),
+    })
   );
 
   // API Routes
@@ -35,7 +35,7 @@ async function bootstrap() {
         description: 'Enter JWT Token',
         in: 'header',
       },
-      'JWT-auth',
+      'JWT-auth'
     )
     .build();
 

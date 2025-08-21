@@ -41,5 +41,7 @@ export interface RefreshTokenPayload {
 export interface AuthenticatedRequest {
   user: {
     user_id: string;
+    username: string;
+    admin: boolean;
   };
 }
