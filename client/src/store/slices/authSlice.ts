@@ -33,13 +33,13 @@ const authSlice = createSlice({
     clearError: (state) => {
       state.error = null;
     },
-    updateForm: (state, action: PayloadAction<Partial<LoginPayload>>) => {
+    updateAuthForm: (state, action: PayloadAction<Partial<LoginPayload>>) => {
       state.form = {
         ...state.form,
         ...action.payload,
       };
     },
-    clearForm: (state) => {
+    clearAuthForm: (state) => {
       state.form = initialState.form;
     },
   },
@@ -57,6 +57,9 @@ const authSlice = createSlice({
           username: action.payload.username,
           admin: action.payload.admin,
         };
+        state.token = action.payload.access_token;
+        state.isAuthenticated = true;
+        state.form = initialState.form;
       })
       .addCase(loginAsync.rejected, (state, action) => {
         state.loading = false;
@@ -102,5 +105,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { clearError, updateForm, clearForm } = authSlice.actions;
+export const { clearError, updateAuthForm, clearAuthForm } = authSlice.actions;
 export default authSlice.reducer;

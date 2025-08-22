@@ -1,5 +1,3 @@
-@use "variables" as *;
-
 // 반응형 믹스인
 @mixin large {
   @media (max-width: #{$large}) {
@@ -57,25 +55,29 @@
 
 // 애니메이션 믹스인
 @mixin fadeIn {
-  @keyframes fadeIn {
-    0% {
-      opacity: 0;
-    }
-    100% {
-      opacity: 1;
-    }
+  animation: fadeIn 0.3s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
 
 @mixin slideUpFromBottom {
-  @keyframes slideUpFromBottom {
-    0% {
-      transform: translateY(70%);
-      opacity: 0;
-    }
-    100% {
-      transform: translateY(0);
-      opacity: 1;
-    }
+  animation: slideUpFromBottom 0.3s ease-in-out forwards;
+}
+
+@keyframes slideUpFromBottom {
+  0% {
+    transform: translateY(70%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
   }
 }

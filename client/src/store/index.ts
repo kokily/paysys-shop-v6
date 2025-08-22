@@ -1,14 +1,13 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './slices/authSlice';
 import rootSlice from './slices/rootSlice';
-import { persistReducer } from 'redux-persist';
-import { persistStore } from 'redux-persist';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: [],
+  whitelist: [''],
   blacklist: ['auth'],
 };
 
@@ -29,5 +28,5 @@ export const store = configureStore({
 
 export const persistor = persistStore(store);
 
-export type RootType = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
