@@ -1,0 +1,73 @@
+.read-menu-container {
+  position: absolute;
+  width: 320px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  animation: 0.5s ease-out 0s 1 fadeIn;
+
+  @include shadow(2);
+}
+
+.read-menu-logo {
+  @include flex-center;
+
+  height: 3.5rem;
+  color: white;
+  font-size: 1.7rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  cursor: pointer;
+  transition: 0.2s;
+  -webkit-filter: brightness(0.9);
+  filter: brightness(0.9);
+
+  &:hover {
+    -webkit-filter: brightness(1);
+    filter: brightness(1);
+  }
+
+  &.회원 {
+    background-color: $member-color;
+  }
+
+  &.준회원 {
+    background-color: $associate-color;
+  }
+
+  &.일반 {
+    background-color: $general-color;
+  }
+}
+
+.read-menu-contents {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  background-color: white;
+  padding: 1.5rem;
+}
+
+.read-menu-contents-input {
+  outline: none;
+  padding: 0.5rem;
+  margin-left: 1rem;
+  border-radius: 4px;
+}
+
+.read-menu-contents-total {
+  text-align: right;
+  color: red;
+  margin-bottom: 0;
+  padding-bottom: 0.5rem;
+
+  h3 {
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+}

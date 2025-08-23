@@ -44,7 +44,7 @@ export class ItemsService {
   async findAll(listItemsDto: ListItemsDto): Promise<Item[]> {
     const { divide, native, name, cursor } = listItemsDto;
 
-    const query = this.itemRepository.createQueryBuilder().limit(30).orderBy('items.num', 'DESC');
+    const query = this.itemRepository.createQueryBuilder('items').limit(30).orderBy('items.num', 'DESC');
 
     if (divide) {
       query.andWhere('items.divide = :divide', { divide });

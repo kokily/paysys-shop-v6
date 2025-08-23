@@ -1,0 +1,36 @@
+.menu-item-container {
+  @include flex-center;
+
+  flex-direction: column;
+  width: 100%;
+  height: 55px;
+  overflow: hidden;
+  cursor: pointer;
+  font-size: 1.215rem;
+  color: white;
+  -webkit-filter: brightness(0.9);
+  filter: brightness(0.9);
+  
+  @include shadow(2);
+
+  &.회원 {
+    background-color: $member-color;
+  }
+
+  &.준회원 {
+    background-color: $associate-color;
+  }
+
+  &.일반 {
+    background-color: $general-color;
+  }
+
+  &:hover {
+    -webkit-filter: brightness(1);
+    filter: brightness(1);
+  }
+
+  &:active {
+    transform: translateY(3px);
+  }
+}

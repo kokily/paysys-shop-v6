@@ -1,0 +1,27 @@
+.read-menu-table-container {
+  tr:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+  }
+
+  th {
+    background-color: $success-color;
+    color: white;
+  }
+
+  th,
+  td {
+    width: 160px;
+    border-radius: 8px;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    text-align: center;
+
+    input {
+      width: 75%;
+      height: 1.5rem;
+      padding: 0.5rem;
+      border-radius: 4px;
+      outline: none;
+    }
+  }
+}

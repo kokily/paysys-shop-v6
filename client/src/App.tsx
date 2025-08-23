@@ -9,6 +9,8 @@ import LoginPage from './pages/auth/LoginPage';
 import MemberPage from './pages/home/MemberPage';
 import AssociatePage from './pages/home/AssociatePage';
 import GeneralPage from './pages/home/GeneralPage';
+import ListMenuPage from './pages/menu/ListMenuPage';
+import ReadMenuPage from './pages/menu/ReadMenuPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -53,6 +55,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <GeneralPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/menu"
+              element={
+                <ProtectedRoute>
+                  <ListMenuPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/menu/:id"
+              element={
+                <ProtectedRoute>
+                  <ReadMenuPage />
                 </ProtectedRoute>
               }
             />
