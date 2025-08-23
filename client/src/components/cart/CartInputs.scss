@@ -1,0 +1,64 @@
+.cart-form-container {
+  width: 350px;
+}
+
+.cart-form-group {
+  position: relative;
+  width: 100%;
+  margin-left: 0.5rem;
+  margin-right: 0.5rem;
+  margin-bottom: 30px;
+}
+
+.cart-form-input {
+  border: none;
+  border-bottom: 1px solid $member-color;
+  padding: 10px;
+  display: block;
+  width: 92%;
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus ~ label,
+  &:valid ~ label {
+    top: -10px;
+    font-size: 14px;
+    color: #12b886;
+  }
+
+  &:focus ~ span:before {
+    left: 0;
+    right: 0;
+  }
+}
+
+.cart-form-label {
+  position: absolute;
+  color: $text-primary;
+  top: 12px;
+  left: 0;
+  transition: 0.2s ease all;
+
+  small {
+    color: red;
+  }
+}
+
+.cart-form-bar {
+  position: relative;
+  display: block;
+  width: 100%;
+
+  &:before {
+    content: '';
+    position: absolute;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    background: $member-color;
+    height: 3px;
+    transition: left 0.2s ease-out, right 0.2s ease-out;
+  }
+}

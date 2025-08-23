@@ -1,0 +1,25 @@
+.cart-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+  margin-bottom: 6rem;
+
+  @include xsmall {
+    width: 100%;
+    padding: 0.2rem;
+  }
+}
+
+.cart-form {
+  margin-top: 1rem;
+
+  button {
+    float: right;
+    margin-left: 0.5rem;
+  }
+
+  .form-center {
+    width: 350px;
+  }
+}

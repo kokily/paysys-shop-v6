@@ -5,12 +5,15 @@ import { useAppDispatch, useAppSelector } from './store/hooks';
 import { checkAuthAsync } from './store/thunks/authThunks';
 import Loading from './components/common/Loading';
 import ProtectedRoute from './libs/providers/ProtectedRoute';
+import ToastPortal from './libs/portals/ToastPortal';
+import ModalPortal from './libs/portals/ModalPortal';
 import LoginPage from './pages/auth/LoginPage';
 import MemberPage from './pages/home/MemberPage';
 import AssociatePage from './pages/home/AssociatePage';
 import GeneralPage from './pages/home/GeneralPage';
 import ListMenuPage from './pages/menu/ListMenuPage';
 import ReadMenuPage from './pages/menu/ReadMenuPage';
+import CartPage from './pages/cart/CartPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -74,7 +77,17 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/cart"
+              element={
+                <ProtectedRoute>
+                  <CartPage />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
+          <ToastPortal />
+          <ModalPortal />
         </div>
       </Router>
     </HelmetProvider>
