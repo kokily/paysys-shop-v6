@@ -1,18 +1,24 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import authReducer from './slices/authSlice';
+import authSlice from './slices/authSlice';
+import nativeSlice from './slices/nativeSlice';
+import menuSlice from './slices/menuSlice';
+import headerSlice from './slices/headerSlice';
 import rootSlice from './slices/rootSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: [''],
+  whitelist: ['native', 'menu', 'header'],
   blacklist: ['auth'],
 };
 
 const rootReducer = combineReducers({
-  auth: authReducer,
+  auth: authSlice,
+  native: nativeSlice,
+  menu: menuSlice,
+  header: headerSlice,
   root: rootSlice,
 });
 

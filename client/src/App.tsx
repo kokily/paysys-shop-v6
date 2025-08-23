@@ -3,9 +3,12 @@ import { HelmetProvider } from 'react-helmet-async';
 import { Navigate, Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { checkAuthAsync } from './store/thunks/authThunks';
+import Loading from './components/common/Loading';
 import ProtectedRoute from './libs/providers/ProtectedRoute';
 import LoginPage from './pages/auth/LoginPage';
 import MemberPage from './pages/home/MemberPage';
+import AssociatePage from './pages/home/AssociatePage';
+import GeneralPage from './pages/home/GeneralPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -20,7 +23,7 @@ function App() {
   }, [dispatch]);
 
   if (loading) {
-    return <div className="loading">로딩 중...</div>;
+    return <Loading />;
   }
 
   return (
@@ -34,6 +37,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <MemberPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/associate"
+              element={
+                <ProtectedRoute>
+                  <AssociatePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/general"
+              element={
+                <ProtectedRoute>
+                  <GeneralPage />
                 </ProtectedRoute>
               }
             />

@@ -1,0 +1,34 @@
+.nav-list-container {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: 0.22rem;
+  transition: 0.16s transform;
+  user-select: none;
+  opacity: 0;
+  transform: scale(0.8) translateY(-20px);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: top center;
+
+  &.open {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+
+  @include shadow(2);
+}
+
+.nav-list-wrapper {
+  position: relative;
+  z-index: 5;
+  width: 12rem;
+  background-color: white;
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+}
+
+.nav-list-split {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  height: 2px;
+  background: linear-gradient(to right, $member-color, $success-color);  
+}

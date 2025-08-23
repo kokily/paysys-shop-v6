@@ -66,6 +66,7 @@ const authSlice = createSlice({
         state.error = action.payload as string;
       });
 
+    // Logout Action
     builder
       .addCase(logoutAsync.pending, (state) => {
         state.user = null;
@@ -82,6 +83,7 @@ const authSlice = createSlice({
         state.error = action.payload as string;
       });
 
+    // Check Auth Action
     builder
       .addCase(checkAuthAsync.pending, (state) => {
         state.loading = true;

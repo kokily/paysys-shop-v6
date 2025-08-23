@@ -1,0 +1,22 @@
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  @media print {
+    display: none;
+  }
+}
+
+.footer-contents {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: white;
+  max-width: 768px;
+  height: 60px;
+  display: flex;
+  overflow-x: auto;
+  
+  @include shadow(1);
+}

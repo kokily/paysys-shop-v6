@@ -1,0 +1,20 @@
+.link-anchor {
+  @include flex-center;
+
+  flex-direction: column;
+  cursor: pointer;
+  flex-grow: 1;
+  min-width: 20%;
+  overflow: hidden;
+  white-space: nowrap;
+  -webkit-tab-highlight-color: transparent;
+  transition: background-color 0.1s ease-in-out;
+
+  &.active {
+    color: $member-color;
+  }
+
+  &:hover {
+    background: #c3fae8;
+  }
+}

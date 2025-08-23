@@ -54,7 +54,7 @@ function Login() {
 
           <button type="submit" className="login-submit-button" disabled={loading}>
             <div className="button-layer">어서오세요!</div>
-            {loading ? '로그인 중...' : '로그인'}
+            로그인
           </button>
         </form>
       </div>

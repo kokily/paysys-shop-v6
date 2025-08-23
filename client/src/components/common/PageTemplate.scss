@@ -1,0 +1,20 @@
+.page-template {
+  @include flex-center;
+  
+  flex-direction: column;
+
+  .main-contents {
+    width: 100%;
+    max-width: 1200px;
+    margin: 6rem 5rem 0rem 5rem;
+
+    @include medium {
+      margin-left: 1rem;
+      margin-right: 1rem;
+    }
+
+    @media print {
+      margin: 0;
+    }
+  }
+}
