@@ -7,6 +7,7 @@ import menuSlice from './slices/menuSlice';
 import headerSlice from './slices/headerSlice';
 import cartSlice from './slices/cartSlice';
 import billSlice from './slices/billSlice';
+import userSlice from './slices/userSlice';
 import mobileSlice from './slices/mobileSlice';
 import modalSlice from './slices/modalSlice';
 import rootSlice from './slices/rootSlice';
@@ -14,7 +15,7 @@ import rootSlice from './slices/rootSlice';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['native', 'menu', 'header', 'cart', 'bill', 'mobile'],
+  whitelist: ['native', 'menu', 'header', 'cart', 'bill', 'user', 'mobile'],
   blacklist: ['modal', 'auth'],
 };
 
@@ -25,6 +26,7 @@ const rootReducer = combineReducers({
   header: headerSlice,
   cart: cartSlice,
   bill: billSlice,
+  user: userSlice,
   mobile: mobileSlice,
   modal: modalSlice,
   root: rootSlice,

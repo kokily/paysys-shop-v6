@@ -17,6 +17,7 @@ import CartPage from './pages/cart/CartPage';
 import ListFrontsPage from './pages/front/ListFrontsPage';
 import ReadFrontPage from './pages/front/ReadFrontPage';
 import AddReservePage from './pages/reserve/AddReservePage';
+import ChangePasswordPage from './pages/password/ChangePasswordPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -112,6 +113,14 @@ function App() {
               element={
                 <ProtectedRoute>
                   <AddReservePage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/password"
+              element={
+                <ProtectedRoute>
+                  <ChangePasswordPage />
                 </ProtectedRoute>
               }
             />
