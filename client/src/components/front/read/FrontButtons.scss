@@ -1,0 +1,16 @@
+.front-buttons-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 1rem;
+
+  @media print {
+    display: none;
+  }
+}
+
+.front-buttons-contents {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}

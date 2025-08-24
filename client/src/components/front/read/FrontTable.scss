@@ -1,0 +1,88 @@
+.front-table-container {
+  width: 100%;
+  padding: 0;
+  border-radius: 0.8rem;
+  overflow: hidden;
+
+  tr:hover {
+    background-color: $front-table-color;
+    color: white;
+  }
+
+  th,
+  td {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    text-align: center;
+  }
+
+  th {
+    background-color: $menu-color;
+    color: white;
+  }
+
+  @include small {
+    td {
+      &.회원 {
+        color: white;
+        background-color: $member-color;
+      }
+
+      &.준회원 {
+        color: white;
+        background-color: $associate-color;
+      }
+
+      &.일반 {
+        color: white;
+        background-color: $general-color;
+      }
+    }
+  }
+
+  @media print {
+    td {
+      color: black;
+
+      &.회원 {
+        color: $member-color;
+        background-color: white;
+      }
+
+      &.준회원 {
+        color: $associate-color;
+        background-color: white;
+      }
+
+      &.일반 {
+        color: $general-color;
+        background-color: white;
+      }
+    }
+  }
+}
+/*
+.front-table-container {
+  @media print {
+    th {
+      color: blue;
+    }
+    td {
+      color: black;
+      back
+
+      &.회원 {
+        color: $member-color;
+      }
+
+      &.준회원 {
+        color: $associate-color;
+      }
+
+      &.일반 {
+        color: $general-color;
+      }
+    }
+  }
+}
+*/

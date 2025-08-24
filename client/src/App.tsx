@@ -19,7 +19,7 @@ import ReadFrontPage from './pages/front/ReadFrontPage';
 
 function App() {
   const dispatch = useAppDispatch();
-  const { isAuthenticated, loading } = useAppSelector((state) => state.auth);
+  const { isAuthenticated, user, loading } = useAppSelector((state) => state.auth);
 
   useEffect(() => {
     const token = localStorage.getItem('token');
@@ -38,7 +38,10 @@ function App() {
       <Router>
         <div>
           <Routes>
-            <Route path="/" element={isAuthenticated ? <Navigate to="/member" /> : <LoginPage />} />
+            <Route
+              path="/"
+              element={isAuthenticated && user !== null ? <Navigate to="/member" /> : <LoginPage />}
+            />
             <Route
               path="/member"
               element={

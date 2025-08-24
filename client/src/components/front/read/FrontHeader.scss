@@ -1,0 +1,66 @@
+.front-header-info {
+  text-align: center;
+  padding-bottom: -1.5rem;
+
+  small {
+    color: $success-color;
+  }
+}
+
+.bar {
+  margin-left: 5rem;
+  margin-right: 5rem;
+  height: 3px;
+  background: linear-gradient(to right, $member-color, $success-color);
+
+  @include medium {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}
+
+.front-header-contents {
+  float: right;
+  text-align: center;
+  position: relative;
+  width: 280px;
+  font-size: 0.8rem;
+  margin: 30px auto;
+  margin-right: 1rem;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+
+  @include xsmall {
+    margin-right: 0.6rem;
+  }
+
+  table {
+    width: 100%;
+    padding: 0;
+
+    tr:hover {
+      background: rgba(0, 0, 0, 0.2);
+    }
+
+    th,
+    td {
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+      text-align: center;
+    }
+
+    th {
+      background: #364fc7;
+      color: white;
+    }
+
+    @media print {
+      th,
+      td {
+        color: black;
+      }
+    }
+  }
+}
