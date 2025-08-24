@@ -3,9 +3,9 @@ import { useAppSelector } from '../../store/hooks';
 import { Navigate } from 'react-router-dom';
 
 function ProtectedRoute({ children }: PropsWithChildren) {
-  const { user, isAuthenticated } = useAppSelector((state) => state.auth);
+  const { isAuthenticated } = useAppSelector((state) => state.auth);
 
-  if (!isAuthenticated || user === null) {
+  if (!isAuthenticated) {
     return <Navigate to="/" replace />;
   }
 

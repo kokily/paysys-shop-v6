@@ -1,8 +1,13 @@
 import { useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { readBillAsync, removeBillAsync, restoreBillAsync } from '../../store/thunks/billThunks';
-import { clearBills } from '../../store/slices/billSlice';
+import {
+  readBillAsync,
+  removeBillAsync,
+  removeReserveAsync,
+  restoreBillAsync,
+} from '../../store/thunks/billThunks';
+import { clearBills, clearReserveForm } from '../../store/slices/billSlice';
 import { hideModal, showModal } from '../../store/slices/modalSlice';
 import { showToast } from '../data/showToast';
 
@@ -43,8 +48,10 @@ export function useReadBill() {
 
   const onRemoveReserve = useCallback(async () => {
     try {
-      // await dispatch(removeReserveAsync(id!)).unwrap();
+      await dispatch(removeReserveAsync(id!)).unwrap();
       dispatch(readBillAsync(id!));
+      dispatch(clearReserveForm());
+      showToast.success('예약금 삭제');
     } catch (error: any) {
       showToast.error(error.message || '예약금 삭제 에러!');
     }

@@ -1,4 +1,4 @@
-import type { AddBillPayload, BillType, ListBillsParams } from '../../types/bill.types';
+import type { AddBillPayload, AddReservePayload, BillType, ListBillsParams } from '../../types/bill.types';
 import type { CartType } from '../../types/cart.types';
 import api from './api';
 
@@ -31,5 +31,15 @@ export const removeBill = async (id: string): Promise<void> => {
 
 export const restoreBill = async (id: string): Promise<CartType> => {
   const response = await api.patch(`/bills/${id}`);
+  return response.data;
+};
+
+export const addReserve = async (payload: AddReservePayload): Promise<void> => {
+  const response = await api.post('/bills/reserve', payload);
+  return response.data;
+};
+
+export const removeReserve = async (id: string): Promise<void> => {
+  const response = await api.delete(`/bills/reserve/${id}`);
   return response.data;
 };

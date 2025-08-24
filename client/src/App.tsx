@@ -16,6 +16,7 @@ import ReadMenuPage from './pages/menu/ReadMenuPage';
 import CartPage from './pages/cart/CartPage';
 import ListFrontsPage from './pages/front/ListFrontsPage';
 import ReadFrontPage from './pages/front/ReadFrontPage';
+import AddReservePage from './pages/reserve/AddReservePage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -106,7 +107,14 @@ function App() {
                 </ProtectedRoute>
               }
             />
-            <Route />
+            <Route
+              path="/front/update/:id"
+              element={
+                <ProtectedRoute>
+                  <AddReservePage />
+                </ProtectedRoute>
+              }
+            />
           </Routes>
           <ToastPortal />
           <ModalPortal />

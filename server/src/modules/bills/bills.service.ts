@@ -7,6 +7,7 @@ import { Cart } from 'src/entities/cart.entity';
 import { BILL_404_MESSAGE, CART_404_MESSAGE, FORBIDDEN_403_MESSAGE } from './bills.controller';
 import { ListBillsDto } from './dto/list-bills.dto';
 import fs from 'fs';
+import { AddReserveDto } from './dto/add-reserve.dto';
 
 @Injectable()
 export class BillsService {
@@ -193,6 +194,26 @@ export class BillsService {
     await this.billRepository.delete(id);
 
     return cart;
+  }
+
+  async addReserve(addReserveDto: AddReserveDto): Promise<void> {
+    const bill = await this.findOne(addReserveDto.bill_id);
+
+    if (!bill) {
+      throw new NotFoundException(BILL_404_MESSAGE);
+    }
+
+    await this.billRepository.update({ id: addReserveDto.bill_id }, { reserve: addReserveDto.reserve });
+  }
+
+  async removeReserve(id: string): Promise<void> {
+    const bill = await this.findOne(id);
+
+    if (!bill) {
+      throw new NotFoundException(BILL_404_MESSAGE);
+    }
+
+    await this.billRepository.update({ id }, { reserve: 0 });
   }
 
   async importDataFromJson(): Promise<void> {

@@ -1,6 +1,14 @@
-import type { AddBillPayload, ListBillsParams } from '../../types/bill.types';
+import type { AddBillPayload, AddReservePayload, ListBillsParams } from '../../types/bill.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { addBill, listBills, readBill, removeBill, restoreBill } from '../services/billService';
+import {
+  addBill,
+  addReserve,
+  listBills,
+  readBill,
+  removeBill,
+  removeReserve,
+  restoreBill,
+} from '../services/billService';
 
 export const addBillAsync = createAsyncThunk(
   'bill/add',
@@ -58,3 +66,25 @@ export const restoreBillAsync = createAsyncThunk('bill/restore', async (id: stri
     return rejectWithValue(error instanceof Error ? error.message : '빌지 카트 복원 실패');
   }
 });
+
+export const addReserveAsync = createAsyncThunk(
+  'bill/addReserve',
+  async (payload: AddReservePayload, { rejectWithValue }) => {
+    try {
+      return await addReserve(payload);
+    } catch (error) {
+      return rejectWithValue(error instanceof Error ? error.message : '예약금 추가 실패');
+    }
+  }
+);
+
+export const removeReserveAsync = createAsyncThunk(
+  'bill/removeReserve',
+  async (id: string, { rejectWithValue }) => {
+    try {
+      return await removeReserve(id);
+    } catch (error) {
+      return rejectWithValue(error instanceof Error ? error.message : '예약금 삭제 실패');
+    }
+  }
+);

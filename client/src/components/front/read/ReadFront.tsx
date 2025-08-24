@@ -32,15 +32,18 @@ function ReadFront() {
           <hr />
 
           <FrontTotal front={bill} />
-          <FrontButtons
-            front={bill}
-            user={user!}
-            onBack={onBack}
-            onModalClick={onModalClick}
-            onRemoveReserve={onRemoveReserve}
-            onReservePage={onReservePage}
-            onRestore={onRestore}
-          />
+
+          {user && (
+            <FrontButtons
+              front={bill}
+              user={user}
+              onBack={onBack}
+              onModalClick={onModalClick}
+              onRemoveReserve={onRemoveReserve}
+              onReservePage={onReservePage}
+              onRestore={onRestore}
+            />
+          )}
         </div>
       )}
     </div>

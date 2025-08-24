@@ -26,3 +26,8 @@ export interface ListBillsParams {
   user_id?: string;
   cursor?: string;
 }
+
+export interface AddReservePayload {
+  bill_id: string;
+  reserve: number;
+}

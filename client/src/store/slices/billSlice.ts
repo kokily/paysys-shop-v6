@@ -2,10 +2,12 @@ import type { PayloadAction } from '@reduxjs/toolkit';
 import type { BillType } from '../../types/bill.types';
 import { createSlice } from '@reduxjs/toolkit';
 import {
+  addReserveAsync,
   listBillsAsync,
   loadMoreBillsAsync,
   readBillAsync,
   removeBillAsync,
+  removeReserveAsync,
   restoreBillAsync,
 } from '../thunks/billThunks';
 
@@ -20,6 +22,7 @@ interface BillState {
   cursor: string | null;
   hasMore: boolean;
   scrollY: number;
+  reserve: number;
 }
 
 const initialState: BillState = {
@@ -33,6 +36,7 @@ const initialState: BillState = {
   cursor: null,
   hasMore: true,
   scrollY: 0,
+  reserve: 0,
 };
 
 const billSlice = createSlice({
@@ -64,6 +68,12 @@ const billSlice = createSlice({
     },
     clearScrollY: (state) => {
       state.scrollY = 0;
+    },
+    updateReserveForm: (state, action: PayloadAction<number>) => {
+      state.reserve = action.payload;
+    },
+    clearReserveForm: (state) => {
+      state.reserve = 0;
     },
   },
   extraReducers: (builder) => {
@@ -147,6 +157,34 @@ const billSlice = createSlice({
         state.loading = false;
         state.error = action.payload as string;
       });
+
+    // Add Reserve Action
+    builder
+      .addCase(addReserveAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(addReserveAsync.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(addReserveAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
+
+    // Remove Reserve Action
+    builder
+      .addCase(removeReserveAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(removeReserveAsync.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(removeReserveAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload as string;
+      });
   },
 });
 
@@ -159,5 +197,7 @@ export const {
   clearError,
   setScrollY,
   clearScrollY,
+  updateReserveForm,
+  clearReserveForm,
 } = billSlice.actions;
 export default billSlice.reducer;

@@ -14,8 +14,8 @@ import rootSlice from './slices/rootSlice';
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['native', 'menu', 'header', 'cart', 'bill', 'mobile', 'modal'],
-  blacklist: ['auth'],
+  whitelist: ['native', 'menu', 'header', 'cart', 'bill', 'mobile'],
+  blacklist: ['modal', 'auth'],
 };
 
 const rootReducer = combineReducers({
@@ -36,7 +36,6 @@ export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
-      immutableCheck: false,
       serializableCheck: false,
     }),
 });

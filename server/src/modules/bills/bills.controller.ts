@@ -6,6 +6,7 @@ import { AddBillDto } from './dto/add-bill.dto';
 import { BillsService } from './bills.service';
 import { ListBillsDto } from './dto/list-bills.dto';
 import { AdminGuard } from '../auth/admin.guard';
+import { AddReserveDto } from './dto/add-reserve.dto';
 
 export const CART_404_MESSAGE = '현 사용자의 카트가 비어있습니다.';
 export const BILL_404_MESSAGE = '존재하지 않는 빌지입니다.';
@@ -64,6 +65,26 @@ export class BillsController {
   @ApiResponse({ status: 200, description: '전표 복원 성공' })
   async restore(@Param('id') id: string, @Request() req: AuthenticatedRequest) {
     return this.billsService.restore(id, req.user.user_id);
+  }
+
+  @Post('reserve')
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @ApiBearerAuth('JWT-auth')
+  @ApiOperation({ summary: '전표 예약금 추가' })
+  @ApiResponse({ status: 201, description: '예약금 추가 성공' })
+  @ApiResponse({ status: 404, description: BILL_404_MESSAGE })
+  async addReserve(@Body() addReserveDto: AddReserveDto, @Request() _req: AuthenticatedRequest) {
+    return this.billsService.addReserve(addReserveDto);
+  }
+
+  @Delete('reserve/:id')
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @ApiBearerAuth('JWT-auth')
+  @ApiOperation({ summary: '전표 예약금 삭제' })
+  @ApiResponse({ status: 201, description: '예약금 삭제 성공' })
+  @ApiResponse({ status: 404, description: BILL_404_MESSAGE })
+  async removeReserve(@Param('id') id: string, _req: AuthenticatedRequest) {
+    return this.billsService.removeReserve(id);
   }
 
   @Post('import')
