@@ -1,0 +1,11 @@
+.list-fronts-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  margin-bottom: 1rem;
+
+  @include xsmall {
+    width: 100%;
+  }
+}

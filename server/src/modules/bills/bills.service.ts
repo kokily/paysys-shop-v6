@@ -1,11 +1,12 @@
 import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Bill } from 'src/entities/bill.entity';
-import { Repository } from 'typeorm';
+import { Connection, Repository } from 'typeorm';
 import { AddBillDto } from './dto/add-bill.dto';
 import { Cart } from 'src/entities/cart.entity';
 import { BILL_404_MESSAGE, CART_404_MESSAGE, FORBIDDEN_403_MESSAGE } from './bills.controller';
 import { ListBillsDto } from './dto/list-bills.dto';
+import fs from 'fs';
 
 @Injectable()
 export class BillsService {
@@ -13,7 +14,8 @@ export class BillsService {
     @InjectRepository(Bill)
     private billRepository: Repository<Bill>,
     @InjectRepository(Cart)
-    private cartRepository: Repository<Cart>
+    private cartRepository: Repository<Cart>,
+    private connection: Connection
   ) {}
 
   /**
@@ -104,7 +106,8 @@ export class BillsService {
         throw new NotFoundException(BILL_404_MESSAGE);
       }
 
-      query.andWhere('(bills.created_at < :date OR (bills.created_at = :date AND bills.id < :id))', {
+      query.andWhere('bills.created_at < :date', { date: cursorBill.created_at });
+      query.orWhere('bills.created_at = :date AND bills.id < :id', {
         date: cursorBill.created_at,
         id: cursorBill.id,
       });
@@ -190,5 +193,35 @@ export class BillsService {
     await this.billRepository.delete(id);
 
     return cart;
+  }
+
+  async importDataFromJson(): Promise<void> {
+    const filePath = `${process.cwd()}/src/bills.json`;
+    const filedata = fs.readFileSync(filePath, 'utf-8');
+    const jsonData = JSON.parse(filedata);
+
+    const queryRunner = this.connection.createQueryRunner();
+
+    await queryRunner.connect();
+    await queryRunner.startTransaction();
+
+    try {
+      await queryRunner.query('ALTER TABLE bill DISABLE TRIGGER ALL;');
+
+      for (const data of jsonData) {
+        await queryRunner.manager.save(Bill, data);
+      }
+
+      await queryRunner.query('ALTER TABLE bill ENABLE TRIGGER ALL;');
+      await queryRunner.commitTransaction();
+
+      console.log('강제 삽입 완료');
+      return jsonData.length;
+    } catch (error) {
+      await queryRunner.rollbackTransaction();
+      console.error('강제주입 실패: ', error);
+    } finally {
+      await queryRunner.release();
+    }
   }
 }

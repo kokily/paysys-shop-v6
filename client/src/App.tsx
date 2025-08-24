@@ -14,6 +14,8 @@ import GeneralPage from './pages/home/GeneralPage';
 import ListMenuPage from './pages/menu/ListMenuPage';
 import ReadMenuPage from './pages/menu/ReadMenuPage';
 import CartPage from './pages/cart/CartPage';
+import ListFrontsPage from './pages/front/ListFrontsPage';
+import ReadFrontPage from './pages/front/ReadFrontPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -85,6 +87,23 @@ function App() {
                 </ProtectedRoute>
               }
             />
+            <Route
+              path="/fronts"
+              element={
+                <ProtectedRoute>
+                  <ListFrontsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/front/:id"
+              element={
+                <ProtectedRoute>
+                  <ReadFrontPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route />
           </Routes>
           <ToastPortal />
           <ModalPortal />

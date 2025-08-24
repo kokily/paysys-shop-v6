@@ -19,3 +19,10 @@ export interface AddBillPayload {
   hall: string;
   etc: string;
 }
+
+export interface ListBillsParams {
+  title?: string;
+  hall?: string;
+  user_id?: string;
+  cursor?: string;
+}

@@ -1,10 +1,11 @@
 import type { AuthenticatedRequest } from 'src/types/jwt.types';
-import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Request, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { AddBillDto } from './dto/add-bill.dto';
 import { BillsService } from './bills.service';
 import { ListBillsDto } from './dto/list-bills.dto';
+import { AdminGuard } from '../auth/admin.guard';
 
 export const CART_404_MESSAGE = '현 사용자의 카트가 비어있습니다.';
 export const BILL_404_MESSAGE = '존재하지 않는 빌지입니다.';
@@ -31,7 +32,7 @@ export class BillsController {
   @ApiOperation({ summary: '전표 리스트 조회' })
   @ApiResponse({ status: 200, description: '전표 리스트 조회 성공' })
   @ApiResponse({ status: 404, description: '커서 전표를 찾을 수 업습니다.' })
-  async findAll(@Param() listBillsDto: ListBillsDto, @Request() _req: AuthenticatedRequest) {
+  async findAll(@Query() listBillsDto: ListBillsDto, @Request() _req: AuthenticatedRequest) {
     return this.billsService.findAll(listBillsDto);
   }
 
@@ -63,5 +64,14 @@ export class BillsController {
   @ApiResponse({ status: 200, description: '전표 복원 성공' })
   async restore(@Param('id') id: string, @Request() req: AuthenticatedRequest) {
     return this.billsService.restore(id, req.user.user_id);
+  }
+
+  @Post('import')
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @ApiBearerAuth('JWT-auth')
+  @ApiOperation({ summary: '전표 Json 강제중입(사전작업 bill.ts)' })
+  @ApiResponse({ status: 200, description: '강제 주입 성공' })
+  async importBills() {
+    return this.billsService.importDataFromJson();
   }
 }

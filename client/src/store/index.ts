@@ -6,13 +6,14 @@ import nativeSlice from './slices/nativeSlice';
 import menuSlice from './slices/menuSlice';
 import headerSlice from './slices/headerSlice';
 import cartSlice from './slices/cartSlice';
+import billSlice from './slices/billSlice';
 import modalSlice from './slices/modalSlice';
 import rootSlice from './slices/rootSlice';
 
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['native', 'menu', 'header', 'cart', 'modal'],
+  whitelist: ['native', 'menu', 'header', 'cart', 'bill', 'modal'],
   blacklist: ['auth'],
 };
 
@@ -22,6 +23,7 @@ const rootReducer = combineReducers({
   menu: menuSlice,
   header: headerSlice,
   cart: cartSlice,
+  bill: billSlice,
   modal: modalSlice,
   root: rootSlice,
 });
@@ -32,6 +34,7 @@ export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
+      immutableCheck: false,
       serializableCheck: false,
     }),
 });

@@ -1,4 +1,3 @@
-import { useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { showToast } from '../data/showToast';
