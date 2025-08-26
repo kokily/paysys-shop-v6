@@ -1,0 +1,36 @@
+.read-item-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  margin-top: 1rem;
+  padding: 1rem;
+
+  @include medium {
+    padding: 0.2rem;
+  }
+}
+
+.read-item-contents {
+  width: 80%;
+  text-align: center;
+  background-color: $background-color;
+
+  @include shadow(1);
+  @include medium {
+    width: 100%;
+  }
+}
+
+.read-item-downborder {
+  height: 3px;
+  background: linear-gradient(to right, $member-color, $search-color);
+  margin-left: 5rem;
+  margin-right: 5rem;
+  margin-bottom: 1rem;
+
+  @include medium {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}

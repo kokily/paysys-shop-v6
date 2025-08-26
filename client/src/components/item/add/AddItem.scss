@@ -1,0 +1,43 @@
+.add-item-container {
+  position: absolute;
+  width: 320px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  animation: 0.5s ease-out 0s 1 fadeIn;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  
+  @include shadow(1);
+}
+
+.add-item-logo {
+  @include flex-center;
+
+  height: 5rem;
+  background-color: $member-color;
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+  cursor: pointer;
+}
+
+.add-item-form {
+  height: auto;
+  padding: 2rem;
+  background-color: white;
+}
+
+.add-item-buttons-box {
+  @include flex-center;
+
+  flex-direction: column;
+
+  button {
+    margin-top:5px;
+    margin-bottom: 5px;
+  }
+}

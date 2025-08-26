@@ -1,3 +1,5 @@
+@use "variables" as *;
+
 // 반응형 믹스인
 @mixin large {
   @media (max-width: #{$large}) {

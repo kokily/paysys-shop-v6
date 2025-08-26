@@ -1,0 +1,35 @@
+.item-content-container {
+  position: relative;
+  width: 300px;
+  margin: 36px auto;
+  padding: 1rem;
+  background-color: white;
+  border-radius: 5px;
+  overflow: hidden;
+
+  @include shadow(1);
+
+  table {
+    width: 100%;
+    padding: 0;
+    border-radius: 0.8rem;
+    overflow: hidden;
+  }
+
+  tr:hover {
+    color: white;
+    background-color: $search-color;
+  }
+
+  th,
+  td {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+  }
+
+  th {
+    color: white;
+    background-color: $menu-color;
+  }
+}

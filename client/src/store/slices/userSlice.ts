@@ -1,5 +1,5 @@
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { ChangePasswordPayload, UserType } from '../../types/user.types';
+import type { UserType } from '../../types/user.types';
 import { createSlice } from '@reduxjs/toolkit';
 import {
   changePasswordAsync,

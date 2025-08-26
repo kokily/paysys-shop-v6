@@ -18,6 +18,10 @@ import ListFrontsPage from './pages/front/ListFrontsPage';
 import ReadFrontPage from './pages/front/ReadFrontPage';
 import AddReservePage from './pages/reserve/AddReservePage';
 import ChangePasswordPage from './pages/password/ChangePasswordPage';
+import ListItemsPage from './pages/item/ListItemsPage';
+import ReadItemsPage from './pages/item/ReadItemPage';
+import AddItemsPage from './pages/item/AddItemPage';
+import UpdateItemsPage from './pages/item/UpdateItemPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -121,6 +125,38 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ChangePasswordPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/items"
+              element={
+                <ProtectedRoute>
+                  <ListItemsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/item/:id"
+              element={
+                <ProtectedRoute>
+                  <ReadItemsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/item/add"
+              element={
+                <ProtectedRoute>
+                  <AddItemsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/item/update/:id"
+              element={
+                <ProtectedRoute>
+                  <UpdateItemsPage />
                 </ProtectedRoute>
               }
             />
