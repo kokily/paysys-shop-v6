@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../libs/hooks/useAuth';
 import Loading from '../common/Loading';
+import Error from '../common/Error';
 import './Login.scss';
 
 function Login() {
   const { form, loading, error, onChange, onLogin } = useAuth();
 
   if (error) {
+    return <Error error={error} />;
+  }
+
+  if (loading) {
     return <Loading />;
   }
 

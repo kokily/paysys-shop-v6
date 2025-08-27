@@ -22,6 +22,8 @@ import ListItemsPage from './pages/item/ListItemsPage';
 import ReadItemsPage from './pages/item/ReadItemPage';
 import AddItemsPage from './pages/item/AddItemPage';
 import UpdateItemsPage from './pages/item/UpdateItemPage';
+import ListUsersPage from './pages/user/ListUsersPage';
+import ReadUsersPage from './pages/user/ReadUserPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -157,6 +159,22 @@ function App() {
               element={
                 <ProtectedRoute>
                   <UpdateItemsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/users"
+              element={
+                <ProtectedRoute>
+                  <ListUsersPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/user/:id"
+              element={
+                <ProtectedRoute>
+                  <ReadUsersPage />
                 </ProtectedRoute>
               }
             />

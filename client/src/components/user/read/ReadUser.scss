@@ -1,0 +1,40 @@
+.read-user-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  margin-top: 1rem;
+  padding: 1rem;
+
+  @include medium {
+    padding: 0.2rem;
+  }
+}
+
+.read-user-content {
+  width: 80%;
+  background-color: $background-color;
+  text-align: center;
+
+  @include shadow(1);
+  @include medium {
+    width: 100%;
+  }
+
+  h2 {
+    font-size: 1.712rem;
+  }
+}
+
+.read-user-downborder {
+  height: 3px;
+  background: linear-gradient(to right, $member-color, $search-color);
+  margin-left: 5rem;
+  margin-right: 5rem;
+  margin-bottom: 1rem;
+
+  @include medium {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+}

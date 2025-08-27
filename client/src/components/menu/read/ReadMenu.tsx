@@ -11,7 +11,7 @@ function ReadMenu() {
     useReadMenu();
 
   if (error) {
-    return <Error code="500" message="알 수 없는 에러 발생" />;
+    return <Error error={error} />;
   }
 
   if (loading) {

@@ -9,7 +9,7 @@ function ChangePassword() {
   const { form, loading, error, onBack, onChange, onChangePassword, onKeyDown } = useChangePassword();
 
   if (error) {
-    return <Error code="500" message="알 수 없는 오류" />;
+    return <Error error={error} />;
   }
 
   if (loading) {

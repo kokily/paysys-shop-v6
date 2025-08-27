@@ -1,0 +1,49 @@
+.users-table-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  max-width: 487px;
+  padding: 0.4rem;
+
+  @include shadow(1);
+}
+
+.users-table {
+  width: 100%;
+  margin-left: 5rem;
+  margin-right: 5rem;
+  border-radius: 0.8rem;
+  overflow: hidden;
+
+  @include medium {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  tr:hover {
+    background-color: rgba(255, 187, 0, 0.2);
+  }
+
+  th,
+  td {
+    border-radius: 0.8rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    text-align: center;
+  }
+
+  th {
+      background-color: $member-color;
+      color: white;
+
+      @include medium {
+        &:first-child {
+          width: 45%;
+        }
+      } 
+  }
+
+  td {
+    cursor: pointer;
+  }
+}

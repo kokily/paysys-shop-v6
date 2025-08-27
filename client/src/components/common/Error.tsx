@@ -1,12 +1,11 @@
 import './Error.scss';
 
 interface Props {
-  code: string;
-  message: string;
+  error: string | null;
 }
 
-function Error({ code, message }: Props) {
-  const errorCode = code.split('');
+function Error({ error }: Props) {
+  const code = error?.slice(-3, error.length);
 
   return (
     <div id="notfound">
@@ -14,12 +13,10 @@ function Error({ code, message }: Props) {
         <div className="notfound-404">
           <h3>에러 발생!!</h3>
           <h1>
-            {errorCode.map((text) => (
-              <span key={text}>{text}</span>
-            ))}
+            <span>{code}</span>
           </h1>
         </div>
-        <h2>{message}</h2>
+        <h2>{error}</h2>
       </div>
     </div>
   );

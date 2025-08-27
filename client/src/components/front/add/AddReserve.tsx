@@ -9,7 +9,7 @@ function AddReserve() {
   const { reserve, error, loading, onBack, onChange, onAddReserve, onKeyDown } = useAddReserve();
 
   if (error) {
-    return <Error code="500" message="알 수 없는 오류" />;
+    return <Error error={error} />;
   }
 
   if (loading) {
