@@ -1,0 +1,21 @@
+.contents-name-container {
+  span {
+    margin-right: 5px;
+  }
+
+  strong {
+    margin-right: 0.5rem;
+  }
+}
+
+.contents-name-group {
+  display: inline;
+  margin-top: 1rem;
+  margin-right: 1rem;
+
+  &.mobile {
+    display: block;
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+  }
+}

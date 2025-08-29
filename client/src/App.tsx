@@ -24,6 +24,10 @@ import AddItemsPage from './pages/item/AddItemPage';
 import UpdateItemsPage from './pages/item/UpdateItemPage';
 import ListUsersPage from './pages/user/ListUsersPage';
 import ReadUsersPage from './pages/user/ReadUserPage';
+import ListWeddingsPage from './pages/wedding/ListWeddingsPage';
+import ReadWeddingsPage from './pages/wedding/ReadWeddingPage';
+import AddWeddingsPage from './pages/wedding/AddWeddingPage';
+import UpdateWeddingsPage from './pages/wedding/UpdateWeddingPage';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -175,6 +179,38 @@ function App() {
               element={
                 <ProtectedRoute>
                   <ReadUsersPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/weddings"
+              element={
+                <ProtectedRoute>
+                  <ListWeddingsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/wedding/:id"
+              element={
+                <ProtectedRoute>
+                  <ReadWeddingsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/wedding/add"
+              element={
+                <ProtectedRoute>
+                  <AddWeddingsPage />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/wedding/update/:id"
+              element={
+                <ProtectedRoute>
+                  <UpdateWeddingsPage />
                 </ProtectedRoute>
               }
             />

@@ -1,0 +1,62 @@
+export const weddingForm = {
+  husband_name: '',
+  husband_image: '',
+  husband_meal: '',
+  husband_present: '',
+  husband_reserve: '',
+  husband_hall: '',
+  husband_sword: '',
+  husband_bouquet: '',
+  husband_company: '',
+  husband_owner_woman: '',
+  husband_owner_man: '',
+  husband_frame: '',
+  husband_file: '',
+  husband_dvd: '',
+  husband_etc: '',
+  bride_name: '',
+  bride_image: '',
+  bride_meal: '',
+  bride_present: '',
+  bride_reserve: '',
+  bride_hall: '',
+  bride_sword: '',
+  bride_bouquet: '',
+  bride_company: '',
+  bride_owner_woman: '',
+  bride_owner_man: '',
+  bride_frame: '',
+  bride_file: '',
+  bride_dvd: '',
+  bride_etc: '',
+  meal_method: 'privacy',
+  meal_price: '',
+  present_method: 'privacy',
+  present_price: '',
+  reserve_method: 'half',
+  reserve_price: '',
+  husband_pre_deposit: '',
+  bride_pre_deposit: '',
+  wedding_at: '',
+  event_at: '',
+};
+
+export const mealData = [
+  { title: '각각 결제', value: 'privacy' },
+  { title: '신랑 결제', value: 'husband' },
+  { title: '신부 결제', value: 'bride' },
+  { title: '반반 결제', value: 'half' },
+];
+
+export const presentData = [
+  { title: '각각 결제', value: 'privacy' },
+  { title: '신랑 결제', value: 'husband' },
+  { title: '신부 결제', value: 'bride' },
+  { title: '반반 결제', value: 'half' },
+];
+
+export const reserveData = [
+  { title: '예약금 반반', value: 'half' },
+  { title: '예약금 신랑', value: 'husband' },
+  { title: '예약금 신부', value: 'bride' },
+];

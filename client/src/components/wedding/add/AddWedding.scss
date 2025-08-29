@@ -1,0 +1,17 @@
+.add-wedding-container {
+  @include flex-center;
+
+  flex-direction: column;
+  margin-bottom: 6rem;
+
+  @include shadow(1);
+  @include medium {
+    margin-bottom: 15rem;
+  }
+}
+
+.add-wedding-title {
+  font-size: 1.512rem;
+  font-weight: 700;
+  color: $success-color;
+}
