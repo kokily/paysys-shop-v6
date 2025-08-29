@@ -1,5 +1,5 @@
-import { unitOfDate } from '../../../libs/data/utils';
 import type { BillType } from '../../../types/bill.types';
+import { unitOfDate } from '../../../libs/data/utils';
 import './FrontsContents.scss';
 
 interface Props {

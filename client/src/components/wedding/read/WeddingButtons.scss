@@ -1,0 +1,8 @@
+.wedding-buttons-container {
+  margin-bottom: 1rem;
+  display: block;
+
+  @media print {
+    display: none;
+  }
+}

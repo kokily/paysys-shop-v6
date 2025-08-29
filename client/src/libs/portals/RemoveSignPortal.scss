@@ -1,0 +1,51 @@
+.remove-sign-modal-overlay {
+  position: fixed;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.2s ease-out;
+}
+
+.remove-sign-modal-content {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  max-width: 90vw;
+  max-height: 90vh;
+  overflow: hidden;
+  animation: slideUpFromBottom 0.3s ease-out;
+}
+
+.remove-sign-modal-header {
+  padding: 1.5rem 1.5rem 0;
+  
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+    text-align: center;
+  }
+}
+
+.remove-sign-modal-body {
+  padding: 1rem 1.5rem;
+  
+  p {
+    margin: 0;
+    text-align: center;
+    color: #666;
+  }
+}
+
+.remove-sign-modal-footer {
+  padding: 0 1.5rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+}

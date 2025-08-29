@@ -1,0 +1,32 @@
+.read-wedding-container {
+  @include flex-center;
+
+  flex-direction: column;
+  margin-top: 1rem;
+  margin-bottom: 6rem;
+  animation: 0.3s ease-out 0s 1 fadeIn;
+
+  @include shadow(1);
+
+  @media print {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 0;
+    padding: 0;
+
+    @include shadow(2);
+  }
+}
+
+.read-wedding-contents {
+  display: flex;
+  margin-bottom: 1.2rem;
+
+  @include medium {
+    flex-direction: column;
+
+    @media print {
+      flex-direction: row;
+    }
+  }
+}

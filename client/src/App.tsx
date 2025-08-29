@@ -7,6 +7,8 @@ import Loading from './components/common/Loading';
 import ProtectedRoute from './libs/providers/ProtectedRoute';
 import ToastPortal from './libs/portals/ToastPortal';
 import ModalPortal from './libs/portals/ModalPortal';
+import SignPortal from './libs/portals/SignPortal';
+import RemoveSignPortal from './libs/portals/RemoveSignPortal';
 import LoginPage from './pages/auth/LoginPage';
 import MemberPage from './pages/home/MemberPage';
 import AssociatePage from './pages/home/AssociatePage';
@@ -217,6 +219,8 @@ function App() {
           </Routes>
           <ToastPortal />
           <ModalPortal />
+          <SignPortal />
+          <RemoveSignPortal />
         </div>
       </Router>
     </HelmetProvider>

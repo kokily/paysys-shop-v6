@@ -1,0 +1,123 @@
+.first-contents-container {
+  font-size: 0.95rem;
+  height: 100%;
+
+  @media print {
+    margin-top: 25.78px;
+  }
+
+  th,
+  td {
+    border: 1px solid $line-color;
+    border-radius: 8px;
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem;
+  }
+
+  tr:hover {
+    background: rgba(165, 102, 255, 0.2);
+  }
+
+  th {
+    background-color: $wedding-background;
+    color: $success_color;
+    width: 130px;
+
+    &.basic {
+      width: 93.3px;
+    }
+
+    &.white {
+      background-color: white;
+    }
+
+    &.result {
+      color: $error-color;
+    }
+  }
+
+  td {
+    width: 93.3px;
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-align: right;
+
+    &.sub {
+      color: $success-color;
+      font-weight: bold;
+    }
+
+    &.result {
+      color: $error-color;
+    }
+
+    &.sub-result {
+      color: $error-color;
+      font-weight: bold;
+    }
+  }
+}
+
+.second-contents-container {
+  font-size: 0.95rem;
+  height: 100%;
+
+  @media print {
+    margin-top: 25.78px;
+  }
+
+  th,
+  td {
+    border: 1px solid $line-color;
+    border-radius: 8px;
+    padding-top: 0.15rem;
+    padding-bottom: 0.15rem;
+  }
+
+  tr:hover {
+    background: rgba(165, 102, 255, 0.2);
+  }
+
+  th {
+    background-color: $wedding-background;
+    color: $success_color;
+    width: 130px;
+
+    &.basic {
+      width: 93.3px;
+    }
+
+    &.white {
+      background-color: white;
+    }
+
+    &.result {
+      color: $error-color;
+    }
+  }
+
+  td {
+    width: 93.3px;
+    font-size: 0.9rem;
+    overflow: hidden;
+    text-align: right;
+
+    &.sub {
+      color: $success-color;
+      font-weight: bold;
+    }
+
+    &.result {
+      color: $error-color;
+    }
+
+    &.sub-result {
+      color: $error-color;
+      font-weight: bold;
+    }
+
+    &.center {
+      text-align: center;
+    }
+  }
+}

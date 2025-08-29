@@ -1,0 +1,39 @@
+.wedding-pane-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.wedding-pane-title {
+  font-size: 1.512rem;
+  color: $success-color;
+}
+
+.wedding-pane-names {
+  text-align: center;
+
+  strong {
+    color: $member-color;
+    transition: 0.2s color;
+  }
+
+  .select:hover {
+    cursor: pointer;
+    color: $search-color;
+  }
+
+  .heart {
+    color: pink;
+  }
+}
+
+.wedding-pane-date {
+  margin: 0;
+}
+
+.wedding-pane-sub-title {
+  @media print {
+    margin-bottom: -25.78px;
+  }
+}

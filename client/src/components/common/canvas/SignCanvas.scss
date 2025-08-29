@@ -1,0 +1,45 @@
+.sign-canvas-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sign-canvas {
+  background: white;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  cursor: crosshair;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: border-color 0.2s ease;
+
+  &:hover {
+    border-color: $menu-color;
+  }
+
+  &:active {
+    cursor: crosshair;
+  }
+}
+
+.sign-clear-btn {
+  padding: 0.5rem 1rem;
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  color: #6c757d;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+
+  &:hover:not(:disabled) {
+    background: #e9ecef;
+    border-color: #adb5bd;
+    color: #495057;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
