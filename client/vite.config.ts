@@ -18,4 +18,10 @@ export default defineConfig({
       },
     },
   },
+  publicDir: 'public',
+  build: {
+    rollupOptions: {
+      external: [],
+    },
+  },
 });

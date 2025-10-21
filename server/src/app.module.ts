@@ -13,12 +13,20 @@ import { BillsModule } from './modules/bills/bills.module';
 import { NotificationModule } from './modules/notifications/notification.module';
 import { SignModule } from './modules/sign/sign.module';
 import { WeddingsModule } from './modules/weddings/weddings.module';
+import { NestExpressApplication } from '@nestjs/platform-express';
 
 @Module({
   imports: [
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../..', 'client/dist'),
       exclude: ['/api/:path'],
+      serveStaticOptions: {
+        setHeaders: (res, path) => {
+          if (path.includes('.well-known/pki-validation') && path.endsWith('.txt')) {
+            res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+          }
+        },
+      },
     }),
     ConfigModule.forRoot({
       isGlobal: true,
