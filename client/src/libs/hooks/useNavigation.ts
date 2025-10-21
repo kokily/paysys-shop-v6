@@ -22,10 +22,6 @@ export function useNavigation() {
     }
   }, [dispatch]);
 
-  const onClickMenu = useCallback((href: string) => {
-    // Todo..
-  }, [dispatch])
-
   return {
     user,
     menuOpen,

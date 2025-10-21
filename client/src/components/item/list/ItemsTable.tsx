@@ -1,12 +1,12 @@
-import type { ItemType } from '../../../types/item.types';
+import type { ItemDivideType, ItemType, NativeLabel } from '../../../types/item.types';
 import { unitOfAccount } from '../../../libs/data/utils';
 import './ItemsTable.scss';
 
 interface Props {
   items: ItemType[];
   onReadItem: (id: string) => void;
-  onSearchDivide: (divideName: string) => void;
-  onSearchNative: (nativeName: string) => void;
+  onSearchDivide: (divideName: ItemDivideType) => void;
+  onSearchNative: (nativeName: NativeLabel) => void;
 }
 
 function ItemsTable({ items, onReadItem, onSearchDivide, onSearchNative }: Props) {
@@ -25,10 +25,10 @@ function ItemsTable({ items, onReadItem, onSearchDivide, onSearchNative }: Props
         {items.length > 0 ? (
           items.map((item, idx) => (
             <tr key={`${item.id}-${idx}`}>
-              <td className="link" onClick={() => onSearchDivide(item.divide)}>
+              <td className="link" onClick={() => onSearchDivide(item.divide as ItemDivideType)}>
                 <span>{item.divide}</span>
               </td>
-              <td className="link" onClick={() => onSearchNative(item.native)}>
+              <td className="link" onClick={() => onSearchNative(item.native as NativeLabel)}>
                 <span>{item.native}</span>
               </td>
               <td className="link" onClick={() => onReadItem(item.id)}>

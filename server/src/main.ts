@@ -7,7 +7,9 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
   // Cors
-  app.enableCors();
+  if (process.env.NODE_ENV === 'development') {
+    app.enableCors();
+  }
 
   // Global Pipes
   app.useGlobalPipes(

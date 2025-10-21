@@ -10,8 +10,7 @@ function ListUsers() {
     useListUsers();
 
   if (error) {
-    const code = error.slice(-3, error.length);
-    return <Error code={code} message={error} />;
+    return <Error error={error} />;
   }
 
   if (loading) {

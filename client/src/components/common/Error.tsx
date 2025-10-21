@@ -12,11 +12,13 @@ function Error({ error }: Props) {
       <div className="notfound">
         <div className="notfound-404">
           <h3>에러 발생!!</h3>
-          <h1>
-            <span>{code}</span>
-          </h1>
+          {error && (
+            <h1>
+              <span>{code}</span>
+            </h1>
+          )}
         </div>
-        <h2>{error}</h2>
+        {error && <h2>{error}</h2>}
       </div>
     </div>
   );

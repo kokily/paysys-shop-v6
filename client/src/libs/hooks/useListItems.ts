@@ -11,6 +11,7 @@ import {
 } from '../../store/slices/itemSlice';
 import { listItemsAsync, loadMoreItemsAsync } from '../../store/thunks/itemThunks';
 import { useObserver } from './useObserver';
+import type { ItemDivideType, NativeLabel } from '../../types/item.types';
 
 export function useListItems() {
   const navigate = useNavigate();
@@ -60,7 +61,7 @@ export function useListItems() {
   }, [fetchItems]);
 
   const onSearchDivide = useCallback(
-    (divideName: string) => {
+    (divideName: ItemDivideType) => {
       dispatch(clearItems());
       dispatch(clearScrollY());
       dispatch(setDivide(divideName));
@@ -69,7 +70,7 @@ export function useListItems() {
   );
 
   const onSearchNative = useCallback(
-    (nativeName: string) => {
+    (nativeName: NativeLabel) => {
       dispatch(clearItems());
       dispatch(clearScrollY());
       dispatch(setNative(nativeName));
