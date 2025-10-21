@@ -76,6 +76,8 @@
     border-radius: 8px;
     padding-top: 0.15rem;
     padding-bottom: 0.15rem;
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   tr:hover {
@@ -118,6 +120,8 @@
     &.sub-result {
       color: $error-color;
       font-weight: bold;
+      padding-left: 0px;
+      padding-right: 0px;
     }
 
     &.center {
