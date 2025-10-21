@@ -4,6 +4,7 @@ import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
 import { join } from 'path';
 import { AppModule } from './app.module';
+import * as express from 'express';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -12,6 +13,25 @@ async function bootstrap() {
   if (process.env.NODE_ENV === 'development') {
     app.enableCors();
   }
+
+  // Express MIME 타입 설정
+  express.static.mime.define({ 'text/plain': ['txt'] });
+  
+  // SSL 인증 파일을 위한 직접 라우트
+  app.use('/.well-known/pki-validation/:filename', (req, res) => {
+    const filename = req.params.filename;
+    const filePath = join(__dirname, '../..', 'client/dist/.well-known/pki-validation', filename);
+    
+    res.setHeader('Content-Type', 'text/plain; charset=utf-8');
+    res.setHeader('Cache-Control', 'no-cache');
+    res.setHeader('Content-Disposition', 'inline');
+    
+    res.sendFile(filePath, (err) => {
+      if (err) {
+        res.status(404).send('File not found');
+      }
+    });
+  });
 
 
   // Global Pipes
