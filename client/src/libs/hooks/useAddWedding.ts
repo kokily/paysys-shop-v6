@@ -94,6 +94,10 @@ export function useAddWedding() {
   );
 
   useEffect(() => {
+    dispatch(clearWeddingForm());
+  }, [dispatch]);
+
+  useEffect(() => {
     const source = async () => {
       await dispatch(readWeddingAsync(id!));
 

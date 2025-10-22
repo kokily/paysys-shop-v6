@@ -50,16 +50,16 @@ export const convertWeddingFormToAPI = (form: AddWeddingPayload): ConvertedAddWe
 
   switch (form.reserve_method) {
     case 'half':
-      husband_reserve = parseInt(form.reserve_price) / 2;
-      bride_reserve = parseInt(form.reserve_price) / 2;
+      husband_reserve = form.reserve_price / 2;
+      bride_reserve = form.reserve_price / 2;
       break;
     case 'husband':
-      husband_reserve = parseInt(form.reserve_price);
+      husband_reserve = form.reserve_price;
       bride_reserve = 0;
       break;
     case 'bride':
       husband_reserve = 0;
-      bride_reserve = parseInt(form.reserve_price);
+      bride_reserve = form.reserve_price;
       break;
     default:
       break;
@@ -67,37 +67,37 @@ export const convertWeddingFormToAPI = (form: AddWeddingPayload): ConvertedAddWe
 
   return {
     ...form,
-    husband_meal: parseInt(form.husband_meal),
-    husband_present: parseInt(form.husband_present),
+    husband_meal: form.husband_meal,
+    husband_present: form.husband_present,
     husband_reserve,
-    husband_hall: parseInt(form.husband_hall),
-    husband_sword: parseInt(form.husband_sword),
-    husband_bouquet: parseInt(form.husband_bouquet),
-    husband_company: parseInt(form.husband_company),
-    husband_owner_woman: parseInt(form.husband_owner_woman),
-    husband_owner_man: parseInt(form.husband_owner_man),
-    husband_frame: parseInt(form.husband_frame),
-    husband_file: parseInt(form.husband_file),
-    husband_dvd: parseInt(form.husband_dvd),
-    husband_etc: parseInt(form.husband_etc),
-    bride_meal: parseInt(form.bride_meal),
-    bride_present: parseInt(form.bride_present),
+    husband_hall: form.husband_hall,
+    husband_sword: form.husband_sword,
+    husband_bouquet: form.husband_bouquet,
+    husband_company: form.husband_company,
+    husband_owner_woman: form.husband_owner_woman,
+    husband_owner_man: form.husband_owner_man,
+    husband_frame: form.husband_frame,
+    husband_file: form.husband_file,
+    husband_dvd: form.husband_dvd,
+    husband_etc: form.husband_etc,
+    bride_meal: form.bride_meal,
+    bride_present: form.bride_present,
     bride_reserve,
-    bride_hall: parseInt(form.bride_hall),
-    bride_sword: parseInt(form.bride_sword),
-    bride_bouquet: parseInt(form.bride_bouquet),
-    bride_company: parseInt(form.bride_company),
-    bride_owner_woman: parseInt(form.bride_owner_woman),
-    bride_owner_man: parseInt(form.bride_owner_man),
-    bride_frame: parseInt(form.bride_frame),
-    bride_file: parseInt(form.bride_file),
-    bride_dvd: parseInt(form.bride_dvd),
-    bride_etc: parseInt(form.bride_etc),
-    meal_price: parseInt(form.meal_price),
-    present_price: parseInt(form.present_price),
-    reserve_price: parseInt(form.reserve_price),
-    husband_pre_deposit: parseInt(form.husband_pre_deposit),
-    bride_pre_deposit: parseInt(form.bride_pre_deposit),
+    bride_hall: form.bride_hall,
+    bride_sword: form.bride_sword,
+    bride_bouquet: form.bride_bouquet,
+    bride_company: form.bride_company,
+    bride_owner_woman: form.bride_owner_woman,
+    bride_owner_man: form.bride_owner_man,
+    bride_frame: form.bride_frame,
+    bride_file: form.bride_file,
+    bride_dvd: form.bride_dvd,
+    bride_etc: form.bride_etc,
+    meal_price: form.meal_price,
+    present_price: form.present_price,
+    reserve_price: form.reserve_price,
+    husband_pre_deposit: form.husband_pre_deposit,
+    bride_pre_deposit: form.bride_pre_deposit,
     wedding_at: new Date(form.wedding_at),
   };
 };
