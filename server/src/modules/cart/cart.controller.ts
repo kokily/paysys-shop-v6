@@ -1,5 +1,5 @@
 import type { AuthenticatedRequest } from 'src/types/jwt.types';
-import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Request, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CartService } from './cart.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -38,7 +38,7 @@ export class CartController {
     return this.cartService.removeCart(req.user.user_id);
   }
 
-  @Patch(':id')
+  @Delete(':id')
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: '카트에서 특정 품목 삭제' })

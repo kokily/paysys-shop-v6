@@ -17,7 +17,11 @@ export class CartService {
 
   private async getCartByUserId(userId: string): Promise<Cart | null> {
     return await this.cartRespository.findOne({
-      where: { user_id: userId },
+      where: {
+        user_id: userId,
+        completed: false,
+        deleted: false,
+      },
     });
   }
 
@@ -84,6 +88,7 @@ export class CartService {
       where: {
         user_id: userId,
         deleted: false,
+        completed: false,
       },
     });
   }

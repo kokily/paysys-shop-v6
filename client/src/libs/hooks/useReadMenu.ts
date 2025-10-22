@@ -44,6 +44,12 @@ export function useReadMenu() {
             price: priceNum,
           })
         );
+
+        showToast.success('카트에 추가되었습니다.');
+
+        dispatch(updateMenuInputs({ count: '', price: '' }));
+
+        navigate(-1);
       } catch (error: any) {
         showToast.error(error.message || '카트 추가 실패');
       }

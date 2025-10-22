@@ -8,36 +8,36 @@ interface Props {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }
 
-function CartInputs({ title, hall, etc, onChange }: Props) {
-  const Input = ({
-    name,
-    value,
-    label,
-    onChange,
-    small,
-  }: {
-    name: string;
-    value: string;
-    label: string;
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    small?: boolean;
-  }) => (
-    <>
-      <input
-        className="cart-form-input"
-        type="text"
-        name={name}
-        value={value}
-        onChange={onChange}
-        required
-      />
-      <span className="cart-form-bar" />
-      <label htmlFor={name} className="cart-form-label">
-        {label} {small && <small>필수</small>}
-      </label>
-    </>
-  );
+const Input = ({
+  name,
+  value,
+  label,
+  onChange,
+  small,
+}: {
+  name: string;
+  value: string;
+  label: string;
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  small?: boolean;
+}) => (
+  <>
+    <input
+      className="cart-form-input"
+      type="text"
+      name={name}
+      value={value}
+      onChange={onChange}
+      required
+    />
+    <span className="cart-form-bar" />
+    <label htmlFor={name} className="cart-form-label">
+      {label} {small && <small>필수</small>}
+    </label>
+  </>
+);
 
+function CartInputs({ title, hall, etc, onChange }: Props) {
   return (
     <div className="cart-form-container">
       <div className="cart-form-group">

@@ -7,7 +7,7 @@ import { resetStore } from '../slices/rootSlice';
  * - 기본 설정 및 인터셉터 구성
  */
 const api = axios.create({
-  baseURL: process.env.NODE_ENV === 'development' ? 'http://localhost:3000/api' : 'https://paysys.kr/api',
+  baseURL: process.env.NODE_ENV === 'development' ? '/api' : 'https://paysys.kr/api',
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',

@@ -30,6 +30,8 @@ function ModalPortal() {
         default:
           break;
       }
+
+      dispatch(hideModal());
     } catch (error: any) {
       console.error(`에러 발생 ${error}`);
       showToast.error(error.message || '작업 실패');
