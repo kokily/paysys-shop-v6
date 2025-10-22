@@ -122,6 +122,10 @@
       font-weight: bold;
       padding-left: 0px;
       padding-right: 0px;
+
+      @media print {
+        white-space: nowrap;
+      }
     }
 
     &.center {
