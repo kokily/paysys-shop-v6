@@ -35,7 +35,7 @@ export function useCart() {
           addBillAsync({
             title: form.title,
             hall: form.hall,
-            etc: form.etc,
+            etc: form.etc || '',
           })
         ).unwrap();
         showToast.success('전표 생성');
