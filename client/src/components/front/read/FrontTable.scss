@@ -21,6 +21,20 @@
     color: white;
   }
 
+  td {
+    &.회원 {
+      color: $member-color;
+    }
+
+    &.일반 {
+      color: $general-color;
+    }
+
+    &.sub-total {
+      color: $bill-sub-total;
+    }
+  }
+
   @include small {
     td {
       &.회원 {
@@ -61,28 +75,3 @@
     }
   }
 }
-/*
-.front-table-container {
-  @media print {
-    th {
-      color: blue;
-    }
-    td {
-      color: black;
-      back
-
-      &.회원 {
-        color: $member-color;
-      }
-
-      &.준회원 {
-        color: $associate-color;
-      }
-
-      &.일반 {
-        color: $general-color;
-      }
-    }
-  }
-}
-*/

@@ -27,11 +27,11 @@ function FrontTable({ front }: Props) {
           <>
             {front.items.map((item, idx) => (
               <tr key={`${item.id}-${idx}`}>
-                <td className={item.native}>{item.divide}</td>
-                <td className={item.native}>{item.name}</td>
-                <td className={item.native}>{unitOfAccount(item.price, '원')}</td>
-                <td className={item.native}>{unitOfAccount(item.count, item.unit)}</td>
-                <td className={item.native}>{unitOfAccount(item.amount, '원')}</td>
+                <td className={item.native}>{item.native}</td>
+                <td>{item.name}</td>
+                <td>{unitOfAccount(item.price, '원')}</td>
+                <td>{unitOfAccount(item.count, item.unit)}</td>
+                <td className="sub-total">{unitOfAccount(item.amount, '원')}</td>
               </tr>
             ))}
           </>
