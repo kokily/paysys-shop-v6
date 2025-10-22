@@ -2,7 +2,7 @@ import type { ChangeEvent, SyntheticEvent } from 'react';
 import { useCallback, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
-import { calculateTotalAmount, updateCartForm } from '../../store/slices/cartSlice';
+import { calculateTotalAmount, clearCartForm, updateCartForm } from '../../store/slices/cartSlice';
 import { removeOneCartAsync, viewCartAsync } from '../../store/thunks/cartThunks';
 import { showToast } from '../data/showToast';
 import { addBillAsync } from '../../store/thunks/billThunks';
@@ -39,7 +39,8 @@ export function useCart() {
           })
         ).unwrap();
         showToast.success('전표 생성');
-        navigate(`/fronts/${response.id}`);
+        dispatch(clearCartForm());
+        navigate(`/front/${response.id}`);
       } catch (error: any) {
         showToast.error(error.message || '전표 생성 실패');
       }
