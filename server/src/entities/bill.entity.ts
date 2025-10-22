@@ -1,5 +1,5 @@
 import type { CartItem } from 'src/types/cart.types';
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, ManyToOne, JoinColumn } from 'typeorm';
 import { User } from './user.entity';
 import { Cart } from './cart.entity';
 
@@ -33,7 +33,7 @@ export class Bill {
   @Column({ nullable: true })
   cart_id: string;
 
-  @OneToOne(() => Cart)
+  @ManyToOne(() => Cart)
   @JoinColumn({ name: 'cart_id' })
   cart: Cart;
 
