@@ -1,4 +1,4 @@
-import { ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
+import { ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Bill } from 'src/entities/bill.entity';
 import { Connection, Repository } from 'typeorm';
@@ -36,11 +36,22 @@ export class BillsService {
       where: {
         user_id: userId,
         deleted: false,
+        completed: false,
       },
     });
 
     if (!currentCart) {
       throw new NotFoundException(CART_404_MESSAGE);
+    }
+
+    // 기존 전표 확인 후 완전 삭제
+    const existingBill = await this.billRepository.findOne({
+      where: { cart_id: currentCart.id }
+    });
+
+    if (existingBill) {
+      await this.billRepository.delete(existingBill.id);
+      console.log('기조 전표 삭제 완료:', existingBill.id);
     }
 
     // 총액 계산
