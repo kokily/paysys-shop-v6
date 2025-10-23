@@ -68,7 +68,7 @@ const itemSlice = createSlice({
       state.cursor = null;
       state.hasMore = true;
     },
-    clearCurrentUser: (state) => {
+    clearCurrentItem: (state) => {
       state.currentItem = null;
     },
     clearError: (state) => {
@@ -193,7 +193,7 @@ export const {
   setDivide,
   setNative,
   clearItems,
-  clearCurrentUser,
+  clearCurrentItem,
   updateItemForm,
   clearItemForm,
   clearError,

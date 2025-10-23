@@ -26,7 +26,7 @@ function ListWeddings() {
 
       <WeddingsTable weddings={weddings} onReadWedding={onReadWedding} />
 
-      <div ref={setTarget} className='observer' />
+      <div ref={setTarget} className="observer" />
     </div>
   );
 }
