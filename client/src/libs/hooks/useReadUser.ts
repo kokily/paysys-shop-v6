@@ -46,18 +46,16 @@ export function useReadUser() {
   }, [dispatch, id, navigate]);
 
   const onModalClick = useCallback(() => {
-    if (currentUser) {
-      dispatch(
-        showModal({
-          title: '사용자 삭제',
-          message: `${currentUser.username} 님을 삭제합니다.`,
-          confirmText: '삭제',
-          cancelText: '취소',
-          actionType: 'REMOTE_USER',
-          handleConfirm: onRemoveUser,
-        })
-      );
-    }
+    dispatch(
+      showModal({
+        title: '사용자 삭제',
+        message: '사용자를 삭제합니다.',
+        confirmText: '삭제',
+        cancelText: '취소',
+        actionType: 'REMOVE_USER',
+        handleConfirm: onRemoveUser,
+      })
+    );
   }, [dispatch, onRemoveUser]);
 
   useEffect(() => {
