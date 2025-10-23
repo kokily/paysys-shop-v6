@@ -2,7 +2,9 @@ import { useCallback, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { showToast } from '../data/showToast';
-import { readUserAsync, setAdminAsync } from '../../store/thunks/userThunks';
+import { readUserAsync, removeUserAsync, setAdminAsync } from '../../store/thunks/userThunks';
+import { hideModal, showModal } from '../../store/slices/modalSlice';
+import { clearUsers } from '../../store/slices/userSlice';
 
 export function useReadUser() {
   const navigate = useNavigate();
@@ -31,9 +33,32 @@ export function useReadUser() {
     }
   }, [dispatch, currentUser, id]);
 
-  const onRemoveUser = useCallback(async () => {}, [dispatch, id, navigate]);
+  const onRemoveUser = useCallback(async () => {
+    try {
+      await dispatch(removeUserAsync(id!)).unwrap();
+      dispatch(clearUsers());
+      dispatch(hideModal());
+      navigate('/users');
+      showToast.success('사용자 삭제 완료');
+    } catch (error: any) {
+      showToast.error(error.message || '에러 발생');
+    }
+  }, [dispatch, id, navigate]);
 
-  const onModalClick = useCallback(() => {}, [dispatch, onRemoveUser]);
+  const onModalClick = useCallback(() => {
+    if (currentUser) {
+      dispatch(
+        showModal({
+          title: '사용자 삭제',
+          message: `${currentUser.username} 님을 삭제합니다.`,
+          confirmText: '삭제',
+          cancelText: '취소',
+          actionType: 'REMOTE_USER',
+          handleConfirm: onRemoveUser,
+        })
+      );
+    }
+  }, [dispatch, onRemoveUser]);
 
   useEffect(() => {
     if (id) {

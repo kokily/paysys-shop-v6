@@ -22,6 +22,7 @@ function ModalPortal() {
           break;
         case 'REMOVE_BILL':
         case 'REMOVE_ITEM':
+        case 'REMOVE_USER':
         case 'REMOVE_WEDDING':
           if (handleConfirm) {
             handleConfirm();
