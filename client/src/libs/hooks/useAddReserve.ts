@@ -43,7 +43,7 @@ export function useAddReserve() {
         showToast.error(error.message || '예약금 추가 실패');
       }
     },
-    [dispatch]
+    [dispatch, reserve]
   );
 
   const onKeyDown = useCallback(
