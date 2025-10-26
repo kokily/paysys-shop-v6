@@ -37,7 +37,7 @@ export const weddingForm = {
   reserve_price: '0',
   husband_pre_deposit: '0',
   bride_pre_deposit: '0',
-  wedding_at: '0',
+  wedding_at: new Date(),
   event_at: '0',
 };
 

@@ -25,7 +25,7 @@ function ContentsDate({ form, onChangeDate, onChangeTime }: Props) {
           locale="ko"
           selected={form.wedding_at ? new Date(form.wedding_at) : null}
           onChange={onChangeDate}
-          dateFormat="yyyy, MM dd"
+          dateFormat="yyyy-MM-dd"
           placeholderText="날짜를 선택하세요"
           isClearable
         />

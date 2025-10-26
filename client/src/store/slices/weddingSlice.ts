@@ -64,7 +64,7 @@ const weddingSlice = createSlice({
       state.scrollY = 0;
     },
     setWeddingDate: (state, action: PayloadAction<Date | null>) => {
-      state.form.wedding_at = action.payload ? action.payload.toISOString() : '';
+      state.form.wedding_at = action.payload ? action.payload : new Date();
     },
     setEventTime: (state, action: PayloadAction<string>) => {
       state.form.event_at = action.payload;

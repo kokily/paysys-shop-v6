@@ -83,7 +83,7 @@ export interface AddWeddingPayload {
   reserve_price: string;
   husband_pre_deposit: string;
   bride_pre_deposit: string;
-  wedding_at: string;
+  wedding_at: Date;
   event_at: string;
 }
 
