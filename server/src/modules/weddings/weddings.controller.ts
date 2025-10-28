@@ -16,7 +16,7 @@ export class WeddingsController {
   @Post()
   @UseGuards(JwtAuthGuard, AdminGuard)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: '웨딩 전표 전송' })
+  @ApiOperation({ summary: '웨딩 전표 전송(관리자)' })
   @ApiResponse({ status: 200, description: '웨딩 전표 전송 성공' })
   async addWedding(@Body() addWeddingDto: AddWeddingDto, @Request() _req: AuthenticatedRequest) {
     return this.weddingsService.addWedding(addWeddingDto);
@@ -25,7 +25,7 @@ export class WeddingsController {
   @Get()
   @UseGuards(JwtAuthGuard, AdminGuard)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: '웨딩 전표 리스트 조회' })
+  @ApiOperation({ summary: '웨딩 전표 리스트 조회(관리자)' })
   @ApiResponse({ status: 200, description: '웨딩 전표 리스트 조회 성공' })
   @ApiResponse({ status: 404, description: 'Cursor ID 전표를 찾을 수 없음' })
   async listWeddings(@Param() listWeddingsDto: ListWeddingsDto, @Request() _req: AuthenticatedRequest) {
@@ -35,7 +35,7 @@ export class WeddingsController {
   @Get(':id')
   @UseGuards(JwtAuthGuard, AdminGuard)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: '웨딩 전표 상세조회' })
+  @ApiOperation({ summary: '웨딩 전표 상세조회(관리자)' })
   @ApiResponse({ status: 200, description: '웨딩 전표 상세 조회 성공' })
   @ApiResponse({ status: 404, description: '웨딩 전표를 찾을 수 없음' })
   async readWedding(@Param('id') id: string, @Request() _req: AuthenticatedRequest) {
@@ -45,7 +45,7 @@ export class WeddingsController {
   @Delete(':id')
   @UseGuards(JwtAuthGuard, AdminGuard)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: '웨딩 전표 삭제' })
+  @ApiOperation({ summary: '웨딩 전표 삭제(관리자)' })
   @ApiResponse({ status: 201, description: '웨딩 전표 삭제 성공' })
   @ApiResponse({ status: 404, description: '웨딩 전표를 찾을 수 없음' })
   async removeWedding(@Param('id') id: string, @Request() _req: AuthenticatedRequest) {
@@ -55,7 +55,7 @@ export class WeddingsController {
   @Patch(':id')
   @UseGuards(JwtAuthGuard, AdminGuard)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: '웨딩 전표 수정' })
+  @ApiOperation({ summary: '웨딩 전표 수정(관리자)' })
   @ApiResponse({ status: 201, description: '웨딩 전표 수정 성공' })
   @ApiResponse({ status: 404, description: '웨딩 전표를 찾을 수 없음' })
   async updateWedding(

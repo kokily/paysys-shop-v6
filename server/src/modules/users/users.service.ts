@@ -150,4 +150,27 @@ export class UsersService {
       message: '비밀번호가 변경되었습니다.',
     };
   }
+
+  /**
+   * 비밀번호 초기화(관리자)
+   * @param userId 대상 사용자 ID
+   * @returns 변경 성공 메시지
+   */
+  async initPassword(userId: string): Promise<{ message: string }> {
+    const user = await this.userRepository.findOne({ where: { id: userId } });
+
+    if (!user) {
+      throw new NotFoundException(MESSAGE_404);
+    }
+
+    const hashedPassword = await bcrypt.hash('123456', 10);
+
+    user.password = hashedPassword;
+
+    await this.userRepository.save(user);
+
+    return {
+      message: '비밀번호가 초기화되었습니다(123456)',
+    };
+  }
 }

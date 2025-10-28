@@ -14,7 +14,7 @@ export class SignController {
   @Post()
   @UseGuards(JwtAuthGuard, AdminGuard)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: '서명 추가' })
+  @ApiOperation({ summary: '서명 추가(관리자)' })
   @ApiResponse({ status: 200, description: '서명 추가 성공' })
   async addSign(@Body() addSignDto: AddSignDto) {
     return this.signService.addSign(addSignDto);
@@ -23,7 +23,7 @@ export class SignController {
   @Delete(':weddingId/:sex')
   @UseGuards(JwtAuthGuard, AdminGuard)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: '서명 삭제' })
+  @ApiOperation({ summary: '서명 삭제(관리자)' })
   @ApiResponse({ status: 201, description: '서명 삭제 성공' })
   async removeSign(@Param('weddingId') weddingId: string, @Param('sex') sex: string) {
     const removeSignDto: RemoveSignDto = { weddingId, sex };

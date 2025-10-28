@@ -37,7 +37,7 @@ export class UsersController {
   @Delete(':id')
   @UseGuards(JwtAuthGuard, AdminGuard)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: '사용자 삭제' })
+  @ApiOperation({ summary: '사용자 삭제(관리자)' })
   @ApiResponse({ status: 201, description: '사용자 삭제 성공' })
   @ApiResponse({ status: 403, description: '관리자 권한 필요' })
   async remove(@Param('id') id: string, @Request() _req: AuthenticatedRequest) {
@@ -47,7 +47,7 @@ export class UsersController {
   @Post('admin')
   @UseGuards(JwtAuthGuard, AdminGuard)
   @ApiBearerAuth('JWT-auth')
-  @ApiOperation({ summary: '관리자 권한 부여' })
+  @ApiOperation({ summary: '관리자 권한 부여(관리자)' })
   @ApiResponse({ status: 201, description: '사용자 권한 변경' })
   @ApiResponse({ status: 404, description: '사용자 찾을 수 없음' })
   @ApiResponse({ status: 403, description: '관리자 권한 필요' })
@@ -63,5 +63,15 @@ export class UsersController {
   @ApiResponse({ status: 404, description: '사용자 찾을 수 없음' })
   async changePassword(@Body() changePasswordDto: ChangePasswordDto, @Request() req: AuthenticatedRequest) {
     return this.usersService.changePassword(req.user.user_id, changePasswordDto.password);
+  }
+
+  @Post('init')
+  @UseGuards(JwtAuthGuard, AdminGuard)
+  @ApiBearerAuth('JWT-auth')
+  @ApiOperation({ summary: '비밀번호 초기화(관리자)' })
+  @ApiResponse({ status: 200, description: '대상 비밀번호 초기화 성공(123456)' })
+  @ApiResponse({ status: 404, description: '사용자 찾을 수 없음' })
+  async initPassword(@Param('id') id: string, @Request() _req: AuthenticatedRequest) {
+    return this.usersService.initPassword(id);
   }
 }
