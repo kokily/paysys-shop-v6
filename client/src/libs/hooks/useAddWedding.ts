@@ -54,14 +54,14 @@ export function useAddWedding() {
           dispatch(clearWeddingForm());
           dispatch(clearWeddings());
           dispatch(listWeddingsAsync({}));
-          navigate('/weddings');
+          navigate(-1);
         } else {
           await dispatch(updateWeddingAsync({ id, ...apiPayload }));
-          showToast.success(`${id} 전표 수정 완료`);
+          showToast.success(`${form.wedding_at}, ${form.event_at} 전표 수정 완료`);
           dispatch(clearWeddingForm());
           dispatch(clearWeddings());
           dispatch(listWeddingsAsync({}));
-          navigate('/weddings');
+          navigate(-1);
         }
       } catch (error: any) {
         showToast.error(error.message || '웨딩 전표 추가 실패');

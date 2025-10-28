@@ -98,7 +98,10 @@ export const convertWeddingFormToAPI = (form: AddWeddingPayload): ConvertedAddWe
     reserve_price: parseInt(form.reserve_price),
     husband_pre_deposit: parseInt(form.husband_pre_deposit),
     bride_pre_deposit: parseInt(form.bride_pre_deposit),
-    wedding_at: new Date(form.wedding_at.getTime() + 9 * 60 * 60 * 1000),
+    wedding_at:
+      typeof form.wedding_at === 'string'
+        ? new Date(form.wedding_at)
+        : new Date(form.wedding_at.getTime() + 9 * 60 * 60 * 1000),
   };
 };
 
