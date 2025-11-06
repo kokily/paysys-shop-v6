@@ -40,7 +40,7 @@ function NavList() {
   };
 
   const onForceHardReload = async () => {
-    showToast.warning('1초 후 새로고침 됩니다.');
+    showToast.warning('❛‿˂̵✧ 1초 후 새로고침 됩니다.');
     
     // Release registered service workers
     if ('serviceWorker' in navigator) {
@@ -81,9 +81,6 @@ function NavList() {
                 <NavItem href="/items" onClick={onItemClick}>
                   품목 리스트
                 </NavItem>
-
-                <div className="nav-list-split" />
-
                 <NavItem href="/users" onClick={onUserClick}>
                   사용자 리스트
                 </NavItem>
@@ -93,6 +90,8 @@ function NavList() {
             )}
 
             <NavItem onClick={onForceHardReload}>강려크 새로고침</NavItem>
+
+            <div className="nav-list-split" />
 
             <NavItem onClick={onLogout}>로그아웃</NavItem>
           </>
