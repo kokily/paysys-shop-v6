@@ -1,3 +1,4 @@
+import { showToast } from '../../../libs/data/showToast';
 import { useNavigation } from '../../../libs/hooks/useNavigation';
 import { useAppDispatch } from '../../../store/hooks';
 import { clearItemForm, clearItems, clearScrollY as clearItemScrollY } from '../../../store/slices/itemSlice';
@@ -38,6 +39,31 @@ function NavList() {
     dispatch(clearUserScrollY());
   };
 
+  const onForceHardReload = async () => {
+    showToast.warning('1초 후 새로고침 됩니다.');
+    
+    // Release registered service workers
+    if ('serviceWorker' in navigator) {
+      const registrations = await navigator.serviceWorker.getRegistrations();
+
+      for (const registration of registrations) {
+        registration.unregister();
+      }
+    }
+
+    // Clear browser cache storage
+    const cacheKeys = await caches.keys();
+
+    for (const key of cacheKeys) {
+      await caches.delete(key);
+    }
+
+    // Stability secured through delay effect
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
+
   return (
     <div className={`nav-list-container ${menuOpen && 'open'}`} onClick={onCloseMenu}>
       <div className="nav-list-wrapper">
@@ -65,6 +91,8 @@ function NavList() {
                 <div className="nav-list-split" />
               </>
             )}
+
+            <NavItem onClick={onForceHardReload}>강려크 새로고침</NavItem>
 
             <NavItem onClick={onLogout}>로그아웃</NavItem>
           </>
