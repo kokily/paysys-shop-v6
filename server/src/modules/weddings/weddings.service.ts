@@ -61,9 +61,9 @@ export class WeddingsService {
     const { limit = 30, cursor } = listWeddingsDto;
     const query = this.weddingsRepository
       .createQueryBuilder('weddings')
+      .limit(limit)
       .orderBy('weddings.created_at', 'DESC')
-      .addOrderBy('weddings.id', 'DESC')
-      .limit(limit);
+      .addOrderBy('weddings.id', 'DESC');
 
     if (cursor) {
       const cursorWedding = await this.weddingsRepository.findOne({ where: { id: cursor } });
@@ -72,7 +72,13 @@ export class WeddingsService {
         throw new NotFoundException('Cursor ID 전표를 찾을 수 없습니다.');
       }
 
-      query.andWhere('weddings:id > :cursor', { cursor });
+      query.andWhere(
+        '(weddings.created_at < :date OR (weddings.created_at = :date AND weddings.id < :id))',
+        {
+          date: cursorWedding.created_at,
+          id: cursorWedding.id,
+        }
+      );
     }
 
     return await query.getMany();

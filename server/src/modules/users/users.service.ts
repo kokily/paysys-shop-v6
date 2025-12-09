@@ -49,7 +49,7 @@ export class UsersService {
         throw new NotFoundException(MESSAGE_404);
       }
 
-      query.andWhere('(users.created_at < :date OR (users.created_at = :date AND users.id < :id', {
+      query.andWhere('(users.created_at < :date OR (users.created_at = :date AND users.id < :id))', {
         date: cursorUser.created_at,
         id: cursorUser.id,
       });

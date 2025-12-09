@@ -114,7 +114,7 @@ const weddingSlice = createSlice({
         const loadMoreWeddings = action.payload;
 
         state.loading = false;
-        state.weddings = [...state.weddings, ...action.payload];
+        state.weddings = [...state.weddings, ...loadMoreWeddings];
         state.cursor = loadMoreWeddings.length > 0 ? loadMoreWeddings[loadMoreWeddings.length - 1].id : null;
         state.hasMore = loadMoreWeddings.length === 30;
       })

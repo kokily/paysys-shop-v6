@@ -1,5 +1,5 @@
 import type { AuthenticatedRequest } from 'src/types/jwt.types';
-import { Body, Controller, Delete, Get, Param, Patch, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Patch, Post, Query, Request, UseGuards } from '@nestjs/common';
 import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { WeddingsService } from './weddings.service';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
@@ -28,7 +28,7 @@ export class WeddingsController {
   @ApiOperation({ summary: '웨딩 전표 리스트 조회(관리자)' })
   @ApiResponse({ status: 200, description: '웨딩 전표 리스트 조회 성공' })
   @ApiResponse({ status: 404, description: 'Cursor ID 전표를 찾을 수 없음' })
-  async listWeddings(@Param() listWeddingsDto: ListWeddingsDto, @Request() _req: AuthenticatedRequest) {
+  async listWeddings(@Query() listWeddingsDto: ListWeddingsDto, @Request() _req: AuthenticatedRequest) {
     return this.weddingsService.listWeddings(listWeddingsDto);
   }
 
