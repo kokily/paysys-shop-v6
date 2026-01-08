@@ -1,7 +1,6 @@
 import axios, { type InternalAxiosRequestConfig } from 'axios';
 import { store } from '..';
 import { resetStore } from '../slices/rootSlice';
-import { config } from 'process';
 
 const api = axios.create({
   baseURL: process.env.NODE_ENV === 'development' ? '/api' : 'https://paysys.kr/api',
