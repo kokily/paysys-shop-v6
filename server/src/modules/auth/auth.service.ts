@@ -75,6 +75,7 @@ export class AuthService {
       username: user.username,
       admin: user.admin,
       access_token: accessToken,
+      refresh_token: refreshToken,
     };
   }
 
@@ -148,6 +149,42 @@ export class AuthService {
       user_id: user.id,
       username: user.username,
       admin: user.admin,
+    };
+  }
+
+  /**
+   * Access Token 갱신
+   * - Refresh Token을 사용, 새로운 Access Token 발급
+   * - DB에 저장된 Refresh Token과 비교, 유효성 검증
+   * @param refreshToken Refresh Token
+   * @returns 새로운 Access Token
+   */
+  async refresh(refreshToken: string) {
+    // DB에서 Refresh Token 조회
+    const tokenEntity = await this.tokenRepository.findOne({
+      where: { token: refreshToken },
+      relations: ['user'],
+    });
+
+    if (!tokenEntity) {
+      throw new UnauthorizedException('유효하지 않은 Refresh Token입니다.');
+    }
+
+    // Refresh Token 검증 및 새 Access Token 생성
+    const decoded = this.jwtService.verifyRefreshToken(refreshToken);
+
+    const newAccessToken = this.jwtService.generateAccessToken({
+      user_id: decoded.user_id,
+      username: decoded.username,
+      admin: decoded.admin,
+    });
+
+    return {
+      user_id: decoded.user_id,
+      username: decoded.username,
+      admin: decoded.admin,
+      access_token: newAccessToken,
+      refresh_token: refreshToken,
     };
   }
 }

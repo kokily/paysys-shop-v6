@@ -1,4 +1,5 @@
 import { NestFactory } from '@nestjs/core';
+import cookieParser from 'cookie-parser';
 import { ValidationPipe } from '@nestjs/common';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import { NestExpressApplication } from '@nestjs/platform-express';
@@ -27,6 +28,9 @@ async function bootstrap() {
       }
     }
   ));
+
+  // Cookie Parser
+  app.use(cookieParser());
 
 
   // Global Pipes
