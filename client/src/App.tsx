@@ -30,6 +30,7 @@ import ListWeddingsPage from './pages/wedding/ListWeddingsPage';
 import ReadWeddingsPage from './pages/wedding/ReadWeddingPage';
 import AddWeddingsPage from './pages/wedding/AddWeddingPage';
 import UpdateWeddingsPage from './pages/wedding/UpdateWeddingPage';
+import { refreshAccessToken } from './store/services/api';
 
 function App() {
   const dispatch = useAppDispatch();
@@ -39,7 +40,17 @@ function App() {
     const token = localStorage.getItem('token');
 
     if (token) {
-      dispatch(checkAuthAsync());
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const expMs = payload.exp * 1000;
+      const remainMs = expMs - Date.now();
+
+      if (remainMs < 5 * 60 * 1000) {
+        refreshAccessToken()
+          .then(() => dispatch(checkAuthAsync()))
+          .catch(() => dispatch(checkAuthAsync()));
+      } else {
+        dispatch(checkAuthAsync());
+      }
     }
   }, [dispatch]);
 

@@ -1,6 +1,7 @@
 import type { LoginPayload } from '../../types/auth.types';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { checkAuth, login, logout } from '../services/authService';
+import { refreshAccessToken } from '../services/api';
 
 export const loginAsync = createAsyncThunk(
   'auth/login',
@@ -40,8 +41,29 @@ export const checkAuthAsync = createAsyncThunk('auth/checkAuth', async (_, { rej
       ...userData,
       access_token: token,
     };
-  } catch (error) {
-    localStorage.removeItem('token');
-    return rejectWithValue(error instanceof Error ? error.message : '인증 실패');
+  } catch (error: any) {
+    try {
+      const newToken = await refreshAccessToken();
+      const userData = await checkAuth();
+
+      return {
+        ...userData,
+        access_token: newToken,
+      };
+    } catch (refreshError: any) {
+      const status = refreshError?.response?.status;
+
+      if (!refreshError?.response) {
+        return rejectWithValue('네트워크 문제로 인증 확인 실패');
+      }
+
+      if (status === 401) {
+        localStorage.removeItem('token');
+        return rejectWithValue('로그인이 만료되었습니다');  
+      }
+      
+      localStorage.removeItem('token');
+      return rejectWithValue('인증 실패');
+    }
   }
 });

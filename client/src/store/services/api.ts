@@ -28,7 +28,7 @@ const isTokenExpiringSoon = (token: string, thresholdMinutes: number = 5) => {
 let isRefreshing = false;
 let refreshPromise: Promise<string> | null = null;
 
-const refreshAccessToken = async (): Promise<string> => {
+export const refreshAccessToken = async (): Promise<string> => {
   if (isRefreshing && refreshPromise) {
     return refreshPromise;
   }
