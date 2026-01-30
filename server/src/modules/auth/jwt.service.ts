@@ -25,7 +25,7 @@ export class JwtService {
   }) {
     return this.jwtService.sign(payload, {
       subject: 'access_token',
-      expiresIn: '1h',
+      expiresIn: '5m',
     });
   }
 

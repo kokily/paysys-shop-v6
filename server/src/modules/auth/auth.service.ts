@@ -162,8 +162,7 @@ export class AuthService {
   async refresh(refreshToken: string) {
     // DB에서 Refresh Token 조회
     const tokenEntity = await this.tokenRepository.findOne({
-      where: { token: refreshToken },
-      relations: ['user'],
+      where: { token: refreshToken }
     });
 
     if (!tokenEntity) {
