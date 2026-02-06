@@ -77,12 +77,16 @@ export class BillsService {
 
     // 알림 서비스
     const notifyUsernames = (process.env.NOTIFY_USERNAMES || '').split(',').map((s) => s.trim()).filter(Boolean);
-
+    console.log('NOTIFY_USERNAMES raw', process.env.NOTIFY_USERNAMES);
+    console.log('notifyUsernames parsed', notifyUsernames);
+    
     if (notifyUsernames.length > 0) {
       const notifyUsers = await this.userRepository.find({
         where: notifyUsernames.map((username) => ({ username })),
         select: ['id', 'username'],
       });
+
+      console.log('notify targets', notifyUsernames, notifyUsers.map(u => u.id));
 
       for (const user of notifyUsers) {
         this.notificationService.sendUserNotification(

@@ -34,6 +34,7 @@ export function useAuth() {
 
         socket.emit('join', user.user_id);
         socket.on('toast-notification', (payload) => {
+          console.log('toast received.', payload);
           showToast.info(payload.message);
         });
       } catch (error) {
