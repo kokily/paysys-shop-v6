@@ -5,9 +5,12 @@ import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { updateAuthForm } from '../../store/slices/authSlice';
 import { showToast } from '../data/showToast';
 import { loginAsync } from '../../store/thunks/authThunks';
+import { clearBills, clearScrollY, setTitle, setHall, setUserId } from '../../store/slices/billSlice';
+import { useNavigate } from 'react-router-dom';
 
 export function useAuth() {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const { form, loading, error } = useAppSelector((state) => state.auth);
 
   const onChange = useCallback(
@@ -35,7 +38,12 @@ export function useAuth() {
         socket.emit('join', user.user_id);
         socket.on('toast-notification', (payload) => {
           showToast.notify(payload.message, () => {
-            window.location.href = '/fronts';
+            dispatch(clearBills());
+            dispatch(clearScrollY());
+            dispatch(setTitle(''));
+            dispatch(setHall(''));
+            dispatch(setUserId(''));
+            navigate('/fronts');
           });
         });
       } catch (error) {
