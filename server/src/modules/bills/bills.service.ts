@@ -1,13 +1,15 @@
 import { ConflictException, ForbiddenException, Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Bill } from 'src/entities/bill.entity';
 import { Connection, Repository } from 'typeorm';
-import { AddBillDto } from './dto/add-bill.dto';
+import { Bill } from 'src/entities/bill.entity';
 import { Cart } from 'src/entities/cart.entity';
+import { User } from 'src/entities/user.entity';
 import { BILL_404_MESSAGE, CART_404_MESSAGE, FORBIDDEN_403_MESSAGE } from './bills.controller';
+import { NotificationService } from '../notifications/notification.service';
+import { AddBillDto } from './dto/add-bill.dto';
 import { ListBillsDto } from './dto/list-bills.dto';
-import fs from 'fs';
 import { AddReserveDto } from './dto/add-reserve.dto';
+import fs from 'fs';
 
 @Injectable()
 export class BillsService {
@@ -16,7 +18,10 @@ export class BillsService {
     private billRepository: Repository<Bill>,
     @InjectRepository(Cart)
     private cartRepository: Repository<Cart>,
-    private connection: Connection
+    @InjectRepository(User)
+    private userRepository: Repository<User>,
+    private connection: Connection,
+    private notificationService: NotificationService,
   ) {}
 
   /**
@@ -69,6 +74,23 @@ export class BillsService {
 
     // 전표 저장
     const savedBill = await this.billRepository.save(bill);
+
+    // 알림 서비스
+    const notifyUsernames = (process.env.NOTIFY_USERNAMES || '').split(',').map((s) => s.trim()).filter(Boolean);
+
+    if (notifyUsernames.length > 0) {
+      const notifyUsers = await this.userRepository.find({
+        where: notifyUsernames.map((username) => ({ username })),
+        select: ['id', 'username'],
+      });
+
+      for (const user of notifyUsers) {
+        this.notificationService.sendUserNotification(
+          user.id,
+          `[${username}]님 전표 등록: ${savedBill.title}`
+        );
+      }
+    }
 
     // 카트를 completed 상태로 변경
     currentCart.completed = true;

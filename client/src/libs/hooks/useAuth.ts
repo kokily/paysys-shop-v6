@@ -1,5 +1,6 @@
 import type { ChangeEvent, SyntheticEvent } from 'react';
 import { useCallback } from 'react';
+import { io } from 'socket.io-client';
 import { useAppDispatch, useAppSelector } from '../../store/hooks';
 import { updateAuthForm } from '../../store/slices/authSlice';
 import { showToast } from '../data/showToast';
@@ -27,8 +28,14 @@ export function useAuth() {
       }
 
       try {
-        await dispatch(loginAsync(form)).unwrap();
+        const user = await dispatch(loginAsync(form)).unwrap();
         showToast.success('로그인 되었습니다.');
+        const socket = io('https://paysys.kr', { withCredentials: true });
+
+        socket.emit('join', user.user_id);
+        socket.on('toast-notification', (payload) => {
+          showToast.info(payload.message);
+        });
       } catch (error) {
         showToast.error(`로그인 실패: ${error}`);
         console.error(`Login Failed: ${error}`);
