@@ -77,8 +77,6 @@ export class BillsService {
 
     // 알림 서비스
     const notifyUsernames = (process.env.NOTIFY_USERNAMES || '').split(',').map((s) => s.trim()).filter(Boolean);
-    console.log('NOTIFY_USERNAMES raw', process.env.NOTIFY_USERNAMES);
-    console.log('notifyUsernames parsed', notifyUsernames);
     
     if (notifyUsernames.length > 0) {
       const notifyUsers = await this.userRepository.find({
@@ -86,12 +84,10 @@ export class BillsService {
         select: ['id', 'username'],
       });
 
-      console.log('notify targets', notifyUsernames, notifyUsers.map(u => u.id));
-
       for (const user of notifyUsers) {
         this.notificationService.sendUserNotification(
           user.id,
-          `[${username}]님 전표 등록: ${savedBill.title}`
+          `<${username}님> 전표 등록: ${savedBill.title}\n클릭시 이동합니다`,
         );
       }
     }
@@ -100,8 +96,6 @@ export class BillsService {
     currentCart.completed = true;
 
     await this.cartRepository.save(currentCart);
-
-    // Todo- Notification
 
     return savedBill;
   }

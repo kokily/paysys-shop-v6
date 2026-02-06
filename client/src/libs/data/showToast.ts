@@ -41,4 +41,21 @@ export const showToast = {
       draggable: false,
     });
   },
+  notify: (message: string, onClick?: () => void) => {
+    toast.info(message, {
+      position: 'top-center',
+      autoClose: false,
+      closeOnClick: true,
+      hideProgressBar: false,
+      pauseOnHover: true,
+      draggable: false,
+      onClick,
+      style: {
+        width: '520px',
+        minHeight: '80px',
+        fontSize: '18px',
+        textAlign: 'center',
+      }
+    });
+  },
 };

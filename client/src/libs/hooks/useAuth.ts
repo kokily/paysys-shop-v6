@@ -34,8 +34,9 @@ export function useAuth() {
 
         socket.emit('join', user.user_id);
         socket.on('toast-notification', (payload) => {
-          console.log('toast received.', payload);
-          showToast.info(payload.message);
+          showToast.notify(payload.message, () => {
+            window.location.href = '/fronts';
+          });
         });
       } catch (error) {
         showToast.error(`로그인 실패: ${error}`);
